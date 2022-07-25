@@ -39,7 +39,7 @@ public class Header extends javax.swing.JPanel {
                 lblRole.setText("user");
             }
             if (us.getImage() != null) {
-                pic.setIcon(new ImageIcon(getClass().getResource("/com/fpoly/icons/" + us.getImage())));
+                pic.setIcon(new ImageIcon(getClass().getResource("/com/fpoly/image/userImage/" + us.getImage())));
             } else {
                 pic.setIcon(new ImageIcon(getClass().getResource("/com/fpoly/icons/male_user_120px.png")));
             }
@@ -76,7 +76,6 @@ public class Header extends javax.swing.JPanel {
             }
         });
 
-        pic.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/fpoly/icons/profile.jpg"))); // NOI18N
         pic.setPreferredSize(new java.awt.Dimension(38, 38));
 
         lblUsername.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N

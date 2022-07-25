@@ -74,7 +74,7 @@ public class FormHome extends javax.swing.JPanel {
             User us = usDao.selectByUserID(ts.getUserID());
             int m = i++;
             if (us.getImage() != null) {
-                table.addRow(new ModelStudent(new ImageIcon(getClass().getResource("/com/fpoly/icons/" + us.getImage())), us.getUserName(), String.valueOf(ts.getMark()), String.valueOf(ts.getMark()), m).toRowTable(eventAction));
+                table.addRow(new ModelStudent(new ImageIcon(getClass().getResource("/com/fpoly/image/userImage/" + us.getImage())), us.getUserName(), String.valueOf(ts.getMark()), String.valueOf(ts.getMark()), m).toRowTable(eventAction));
             } else {
                 table.addRow(new ModelStudent(new ImageIcon(getClass().getResource("/com/fpoly/icons/male_user_40px.png")), us.getUserName(), String.valueOf(ts.getMark()), String.valueOf(ts.getMark()), m).toRowTable(eventAction));
             }

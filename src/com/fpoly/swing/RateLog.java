@@ -29,7 +29,7 @@ public class RateLog extends javax.swing.JPanel {
         usDAO = new UserDAO();
         user = usDAO.selectByUserID(rate.getUserID());
         if (user.getImage() != null) {
-             ImageIcon imgIcon = new ImageIcon(getClass().getResource("/com/fpoly/icons/" + user.getImage().trim()));
+             ImageIcon imgIcon = new ImageIcon(getClass().getResource("/com/fpoly/image/userImage/" + user.getImage().trim()));
             Avatar.setIcon(imgIcon);
         }else{
             Avatar.setIcon(new ImageIcon(getClass().getResource("/com/fpoly/icons/male_user_120px.png")));

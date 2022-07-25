@@ -83,18 +83,26 @@ public class SubjectForm extends javax.swing.JPanel {
     }
 
     public void initCardData(Subject sbj) {
-        Icon icon = IconFontSwing.buildIcon(GoogleMaterialDesignIcons.FIBER_NEW, 60, new Color(255, 255, 255, 100), new Color(255, 255, 255, 15));
+        Icon icon = IconFontSwing.buildIcon(GoogleMaterialDesignIcons.FIBER_NEW, 40, new Color(255, 255, 255, 100), new Color(255, 255, 255, 15));
         card11.setData(new ModelCard1("Vocabulary", sbj.getSubjectName(), icon));
-        Icon icon1 = IconFontSwing.buildIcon(GoogleMaterialDesignIcons.EQUALIZER, 60, new Color(255, 255, 255, 100), new Color(255, 255, 255, 15));
+        Icon icon1 = IconFontSwing.buildIcon(GoogleMaterialDesignIcons.EQUALIZER, 40, new Color(255, 255, 255, 100), new Color(255, 255, 255, 15));
         card12.setData(new ModelCard1("Grammar", "Grammar skill", icon1));
-        Icon icon2 = IconFontSwing.buildIcon(GoogleMaterialDesignIcons.LIGHTBULB_OUTLINE, 60, new Color(255, 255, 255, 100), new Color(255, 255, 255, 15));
+        Icon icon2 = IconFontSwing.buildIcon(GoogleMaterialDesignIcons.LIGHTBULB_OUTLINE, 40, new Color(255, 255, 255, 100), new Color(255, 255, 255, 15));
         card13.setData(new ModelCard1("Word skill", "", icon2));
-        Icon icon3 = IconFontSwing.buildIcon(GoogleMaterialDesignIcons.STYLE, 60, new Color(255, 255, 255, 100), new Color(255, 255, 255, 15));
+        Icon icon3 = IconFontSwing.buildIcon(GoogleMaterialDesignIcons.STYLE, 40, new Color(255, 255, 255, 100), new Color(255, 255, 255, 15));
         card14.setData(new ModelCard1("Excercise", "Multiple choice", icon3));
     }
 
     public void setImage(String imageName) {
-        String imageUrl = "/com/fpoly/icons/" + imageName;
+        String imageUrl = "/com/fpoly/image/unitImage/" + imageName;
+        ImageIcon imgIcon = new ImageIcon(getClass().getResource(imageUrl));
+        Image img = XImage.resize(imgIcon.getImage(), 600, 550);
+        ImageIcon resizedIcon = new ImageIcon(img);
+        lblImage.setIcon(resizedIcon);
+    }
+    
+    public void setSubjectImage(String imageName) {
+        String imageUrl = "/com/fpoly/image/subjectImage/" + imageName;
         ImageIcon imgIcon = new ImageIcon(getClass().getResource(imageUrl));
         Image img = XImage.resize(imgIcon.getImage(), 600, 550);
         ImageIcon resizedIcon = new ImageIcon(img);

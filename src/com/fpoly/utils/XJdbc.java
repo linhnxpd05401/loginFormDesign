@@ -18,7 +18,7 @@ import java.util.logging.Logger;
  */
 public class XJdbc {
     public static String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
-    public static String dbUrl = "jdbc:sqlserver://LINHNGUYEN\\SQLEXPRESS:1433;databaseName=TheLEAAcademy";
+    public static String dbUrl = "jdbc:sqlserver://Localhost:1433;databaseName=TheLEAAcademy";
     public static String username = "sa";
     public static String password = "123456";
     

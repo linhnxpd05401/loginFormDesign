@@ -69,7 +69,7 @@ public class UserUpdateFrom extends javax.swing.JPanel {
                 rdoFemale.setSelected(true);
             }
             if (us.getImage() != null) {
-                ImageIcon imgIcon = new ImageIcon(getClass().getResource("/com/fpoly/icons/" + us.getImage().trim()));
+                ImageIcon imgIcon = new ImageIcon(getClass().getResource("/com/fpoly/image/userImage/" + us.getImage().trim()));
                 image.setToolTipText(us.getImage());
                 image.setIcon(imgIcon);
 

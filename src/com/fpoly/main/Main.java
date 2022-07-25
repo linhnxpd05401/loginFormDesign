@@ -96,7 +96,7 @@ public class Main extends javax.swing.JFrame {
                             sbjForm.setSbj(subject);
                             sbjForm.initCardData(subject);
                             sbjForm.addImage();
-                            sbjForm.setImage(list.get(i).getSubjectImage());
+                            sbjForm.setSubjectImage(list.get(i).getSubjectImage());
                             main.showForm(sbjForm);
                             if (!animator.isRunning()) {
                                 animator.start();

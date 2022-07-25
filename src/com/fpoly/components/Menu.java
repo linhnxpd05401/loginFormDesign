@@ -12,6 +12,7 @@ import com.fpoly.swing.scrollbar.ScrollBarCustom;
 import com.fpoly.utils.Auth;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Cursor;
 import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -102,7 +103,7 @@ public class Menu extends javax.swing.JPanel {
             addMenu(new ModelMenu(new ImageIcon(getClass().getResource("/com/fpoly/icons/user_secured_20px.png")), "My Info", "Update My Info", "Change password"));
             addMenu(new ModelMenu(new ImageIcon(getClass().getResource("/com/fpoly/icons/elective_20px.png")), "Subjects", getSubmenu()));
             addMenu(new ModelMenu(new ImageIcon(getClass().getResource("/com/fpoly/icons/3.png")), "Test", "Testing", "Ranking"));
-            addMenu(new ModelMenu(new ImageIcon(getClass().getResource("/com/fpoly/icons/3.png")), "Management", "Create Test", "Create Subject", "List"));
+            addMenu(new ModelMenu(new ImageIcon(getClass().getResource("/com/fpoly/icons/administrative_tools_20px.png")), "Management", "Create Test", "Create Subject", "List"));
         } else {
             addMenu(new ModelMenu(new ImageIcon(getClass().getResource("/com/fpoly/icons/user_secured_20px.png")), "My Info", "Update My Info", "Change password", "Delete Account"));
             addMenu(new ModelMenu(new ImageIcon(getClass().getResource("/com/fpoly/icons/elective_20px.png")), "Subjects", getSubmenu()));
@@ -148,10 +149,12 @@ public class Menu extends javax.swing.JPanel {
     
     public void addExitEvent(ActionListener event) {
         btnExit.addActionListener(event);
+        
     }
     
     public void addHomeEvent(MouseAdapter event) {
         profile1.addMouseListener(event);
+        profile1.setCursor(new Cursor(Cursor.HAND_CURSOR));
     }
 
     @SuppressWarnings("unchecked")
