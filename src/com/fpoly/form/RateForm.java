@@ -8,8 +8,13 @@ import com.fpoly.DAO.RateDAO;
 import com.fpoly.models.Rate;
 import com.fpoly.swing.RateLog;
 import com.fpoly.swing.scrollbar.ScrollBarCustom;
+import java.sql.JDBCType;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -30,6 +35,7 @@ public class RateForm extends javax.swing.JPanel {
         sp.getViewport().setBorder(null);
         sp.getViewport().getInsets().set(0, 0, 0, 0);
         Init();
+        initProGress();
     }
 
     public void Init() {
@@ -41,6 +47,191 @@ public class RateForm extends javax.swing.JPanel {
             rlog.setData(rate);
         }
     }
+
+    void initProGress() {
+        RateDAO rtDAO = new RateDAO();
+        int FiveStar = rtDAO.countStar(5);
+        int FourStar = rtDAO.countStar(4);
+        int ThreeStar = rtDAO.countStar(3);
+        int TwoStar = rtDAO.countStar(2);
+        int OneStar = rtDAO.countStar(1);
+        int sum = FiveStar + FourStar + ThreeStar + TwoStar + OneStar;
+        System.out.println(sum);
+        float FivePernt = Math.round(((1.0) * FiveStar / sum) * 100);
+        float FourPercent = Math.round(((1.0) * FourStar / sum) * 100);
+        float ThreePercent = Math.round(((1.0) * ThreeStar / sum) * 100);
+        float TwoPercent = Math.round(((1.0) * TwoStar / sum) * 100);
+        float OnePercent = Math.round(((1.0) * OneStar / sum) * 100);
+        //System.out.println(FivePernt);
+        prg5Star.setValue((int) FivePernt);
+        prg4Star.setValue((int) FourPercent);
+        prg3Star.setValue((int) ThreePercent);
+        prg2Star.setValue((int) TwoPercent);
+        prg1Star.setValue((int) OnePercent);
+
+        /*
+            3 lượt 4 sao - 0.1 sao tổng 
+            1 lượt 5 sao =  0.1 sao tổng
+            2 lượt 3 sao - 0.1 sao tổng
+           1  lượt 2 sao - 0.2 sao tổng
+            1 lượt 1 sao - 0.3 sao tổng
+         */
+        double OvrallRate = 5;
+        OvrallRate = 5 + (FiveStar * (0.1)) - ((FourStar/2) * (0.2)) - ((ThreeStar / 1) * (0.2)) - (TwoStar * (0.3)) - (OneStar * (0.4));
+        double roundOff = Math.round(OvrallRate*100)/100;
+        if (roundOff > 5) {
+            roundOff = 5;
+            lbl1StarOverall.setIcon(new ImageIcon(getClass().getResource("/com/fpoly/icons/icons8_star_20px_1.png")));
+            lbl2StarOverall.setIcon(new ImageIcon(getClass().getResource("/com/fpoly/icons/icons8_star_20px_1.png")));
+            lbl3StarOverall.setIcon(new ImageIcon(getClass().getResource("/com/fpoly/icons/icons8_star_20px_1.png")));
+            lbl4StarOverall.setIcon(new ImageIcon(getClass().getResource("/com/fpoly/icons/icons8_star_20px_1.png")));
+            lbl5StarOverall.setIcon(new ImageIcon(getClass().getResource("/com/fpoly/icons/icons8_star_20px_1.png")));
+        }
+        if (roundOff >= 4.5 && roundOff < 5) {
+            lbl1StarOverall.setIcon(new ImageIcon(getClass().getResource("/com/fpoly/icons/icons8_star_20px_1.png")));
+            lbl2StarOverall.setIcon(new ImageIcon(getClass().getResource("/com/fpoly/icons/icons8_star_20px_1.png")));
+            lbl3StarOverall.setIcon(new ImageIcon(getClass().getResource("/com/fpoly/icons/icons8_star_20px_1.png")));
+            lbl4StarOverall.setIcon(new ImageIcon(getClass().getResource("/com/fpoly/icons/icons8_star_20px_1.png")));
+            lbl5StarOverall.setIcon(new ImageIcon(getClass().getResource("/com/fpoly/icons/icons8_star_half_20px.png")));
+        }
+        if (roundOff >= 4 && roundOff < 4.5) {
+            lbl1StarOverall.setIcon(new ImageIcon(getClass().getResource("/com/fpoly/icons/icons8_star_20px_1.png")));
+            lbl2StarOverall.setIcon(new ImageIcon(getClass().getResource("/com/fpoly/icons/icons8_star_20px_1.png")));
+            lbl3StarOverall.setIcon(new ImageIcon(getClass().getResource("/com/fpoly/icons/icons8_star_20px_1.png")));
+            lbl4StarOverall.setIcon(new ImageIcon(getClass().getResource("/com/fpoly/icons/icons8_star_20px_1.png")));
+            lbl5StarOverall.setIcon(new ImageIcon(getClass().getResource("/com/fpoly/icons/icons8_star_20px_4.png")));
+        }
+        if (roundOff >= 3.5 && roundOff < 4) {
+            lbl1StarOverall.setIcon(new ImageIcon(getClass().getResource("/com/fpoly/icons/icons8_star_20px_1.png")));
+            lbl2StarOverall.setIcon(new ImageIcon(getClass().getResource("/com/fpoly/icons/icons8_star_20px_1.png")));
+            lbl3StarOverall.setIcon(new ImageIcon(getClass().getResource("/com/fpoly/icons/icons8_star_20px_1.png")));
+            lbl4StarOverall.setIcon(new ImageIcon(getClass().getResource("/com/fpoly/icons/icons8_star_half_20px.png")));
+            lbl5StarOverall.setIcon(new ImageIcon(getClass().getResource("/com/fpoly/icons/icons8_star_20px_4.png")));
+        }
+        if (roundOff >= 3 && roundOff < 3.5) {
+            lbl1StarOverall.setIcon(new ImageIcon(getClass().getResource("/com/fpoly/icons/icons8_star_20px_1.png")));
+            lbl2StarOverall.setIcon(new ImageIcon(getClass().getResource("/com/fpoly/icons/icons8_star_20px_1.png")));
+            lbl3StarOverall.setIcon(new ImageIcon(getClass().getResource("/com/fpoly/icons/icons8_star_20px_1.png")));
+            lbl4StarOverall.setIcon(new ImageIcon(getClass().getResource("/com/fpoly/icons/icons8_star_20px_4.png")));
+            lbl5StarOverall.setIcon(new ImageIcon(getClass().getResource("/com/fpoly/icons/icons8_star_20px_4.png")));
+        }
+        if (roundOff >= 2.5 && roundOff < 3) {
+            lbl1StarOverall.setIcon(new ImageIcon(getClass().getResource("/com/fpoly/icons/icons8_star_20px_1.png")));
+            lbl2StarOverall.setIcon(new ImageIcon(getClass().getResource("/com/fpoly/icons/icons8_star_20px_1.png")));
+            lbl3StarOverall.setIcon(new ImageIcon(getClass().getResource("/com/fpoly/icons/icons8_star_half_20px.png")));
+            lbl4StarOverall.setIcon(new ImageIcon(getClass().getResource("/com/fpoly/icons/icons8_star_20px_4.png")));
+            lbl5StarOverall.setIcon(new ImageIcon(getClass().getResource("/com/fpoly/icons/icons8_star_20px_4.png")));
+        }
+        if (roundOff >= 2 && roundOff < 2.5) {
+            lbl1StarOverall.setIcon(new ImageIcon(getClass().getResource("/com/fpoly/icons/icons8_star_20px_1.png")));
+            lbl2StarOverall.setIcon(new ImageIcon(getClass().getResource("/com/fpoly/icons/icons8_star_20px_1.png")));
+            lbl3StarOverall.setIcon(new ImageIcon(getClass().getResource("/com/fpoly/icons/icons8_star_20px_4.png")));
+            lbl4StarOverall.setIcon(new ImageIcon(getClass().getResource("/com/fpoly/icons/icons8_star_20px_4.png")));
+            lbl5StarOverall.setIcon(new ImageIcon(getClass().getResource("/com/fpoly/icons/icons8_star_20px_4.png")));
+        }
+        if (roundOff >= 1.5 && roundOff < 2) {
+            lbl1StarOverall.setIcon(new ImageIcon(getClass().getResource("/com/fpoly/icons/icons8_star_20px_1.png")));
+            lbl2StarOverall.setIcon(new ImageIcon(getClass().getResource("/com/fpoly/icons/icons8_star_half_20px.png")));
+            lbl3StarOverall.setIcon(new ImageIcon(getClass().getResource("/com/fpoly/icons/icons8_star_20px_4.png")));
+            lbl4StarOverall.setIcon(new ImageIcon(getClass().getResource("/com/fpoly/icons/icons8_star_20px_4.png")));
+            lbl5StarOverall.setIcon(new ImageIcon(getClass().getResource("/com/fpoly/icons/icons8_star_20px_4.png")));
+        }
+        if (roundOff >= 1 && roundOff < 1.5) {
+            lbl1StarOverall.setIcon(new ImageIcon(getClass().getResource("/com/fpoly/icons/icons8_star_20px_1.png")));
+            lbl2StarOverall.setIcon(new ImageIcon(getClass().getResource("/com/fpoly/icons/icons8_star_20px_4.png")));
+            lbl3StarOverall.setIcon(new ImageIcon(getClass().getResource("/com/fpoly/icons/icons8_star_20px_4.png")));
+            lbl4StarOverall.setIcon(new ImageIcon(getClass().getResource("/com/fpoly/icons/icons8_star_20px_4.png")));
+            lbl5StarOverall.setIcon(new ImageIcon(getClass().getResource("/com/fpoly/icons/icons8_star_20px_4.png")));
+        }
+        
+        
+        lblOveralStar.setText(String.valueOf(roundOff));
+
+    }
+
+    void starColor1() {
+        final ScheduledExecutorService svc = Executors.newScheduledThreadPool(1);
+        svc.schedule(new Runnable() {
+            @Override
+            public void run() {
+                btn1Star.setIcon(new ImageIcon(getClass().getResource("/com/fpoly/icons/icons8_star_40px.png")));
+            }
+
+        }, 1, TimeUnit.SECONDS);
+    }
+
+    void starColor2() {
+        final ScheduledExecutorService svc = Executors.newScheduledThreadPool(1);
+        svc.schedule(new Runnable() {
+            @Override
+            public void run() {
+                btn1Star.setIcon(new ImageIcon(getClass().getResource("/com/fpoly/icons/icons8_star_40px.png")));
+                btn2Star.setIcon(new ImageIcon(getClass().getResource("/com/fpoly/icons/icons8_star_40px.png")));
+            }
+
+        }, 1, TimeUnit.SECONDS);
+    }
+
+    void starColor3() {
+        final ScheduledExecutorService svc = Executors.newScheduledThreadPool(1);
+        svc.schedule(new Runnable() {
+            @Override
+            public void run() {
+                btn1Star.setIcon(new ImageIcon(getClass().getResource("/com/fpoly/icons/icons8_star_40px.png")));
+                btn2Star.setIcon(new ImageIcon(getClass().getResource("/com/fpoly/icons/icons8_star_40px.png")));
+                btn3Star.setIcon(new ImageIcon(getClass().getResource("/com/fpoly/icons/icons8_star_40px.png")));
+            }
+
+        }, 1, TimeUnit.SECONDS);
+    }
+
+    void starColor4() {
+        final ScheduledExecutorService svc = Executors.newScheduledThreadPool(1);
+        svc.schedule(new Runnable() {
+            @Override
+            public void run() {
+                btn1Star.setIcon(new ImageIcon(getClass().getResource("/com/fpoly/icons/icons8_star_40px.png")));
+                btn2Star.setIcon(new ImageIcon(getClass().getResource("/com/fpoly/icons/icons8_star_40px.png")));
+                btn3Star.setIcon(new ImageIcon(getClass().getResource("/com/fpoly/icons/icons8_star_40px.png")));
+                btn4Star.setIcon(new ImageIcon(getClass().getResource("/com/fpoly/icons/icons8_star_40px.png")));
+            }
+
+        }, 1, TimeUnit.SECONDS);
+    }
+
+    void starColor5() {
+        final ScheduledExecutorService svc = Executors.newScheduledThreadPool(1);
+        svc.schedule(new Runnable() {
+            @Override
+            public void run() {
+                btn1Star.setIcon(new ImageIcon(getClass().getResource("/com/fpoly/icons/icons8_star_40px.png")));
+                btn2Star.setIcon(new ImageIcon(getClass().getResource("/com/fpoly/icons/icons8_star_40px.png")));
+                btn3Star.setIcon(new ImageIcon(getClass().getResource("/com/fpoly/icons/icons8_star_40px.png")));
+                btn4Star.setIcon(new ImageIcon(getClass().getResource("/com/fpoly/icons/icons8_star_40px.png")));
+                btn5Star.setIcon(new ImageIcon(getClass().getResource("/com/fpoly/icons/icons8_star_40px.png")));
+            }
+
+        }, 1, TimeUnit.SECONDS);
+    }
+
+    void starColorOrigin() {
+
+        final ScheduledExecutorService svc = Executors.newScheduledThreadPool(1);
+        svc.schedule(new Runnable() {
+            @Override
+            public void run() {
+                btn1Star.setIcon(new ImageIcon(getClass().getResource("/com/fpoly/icons/icons8_star_40px_1.png")));
+                btn2Star.setIcon(new ImageIcon(getClass().getResource("/com/fpoly/icons/icons8_star_40px_1.png")));
+                btn3Star.setIcon(new ImageIcon(getClass().getResource("/com/fpoly/icons/icons8_star_40px_1.png")));
+                btn4Star.setIcon(new ImageIcon(getClass().getResource("/com/fpoly/icons/icons8_star_40px_1.png")));
+                btn5Star.setIcon(new ImageIcon(getClass().getResource("/com/fpoly/icons/icons8_star_40px_1.png")));
+            }
+
+        }, 1, TimeUnit.SECONDS);
+
+    }
+
+    int Star = 0;
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -66,11 +257,6 @@ public class RateForm extends javax.swing.JPanel {
         prg2Star = new progressbar.ProgressBarCustom();
         prg1Star = new progressbar.ProgressBarCustom();
         panelRate = new javax.swing.JPanel();
-        btn2Star = new javax.swing.JButton();
-        btn1Star = new javax.swing.JButton();
-        btn5Star = new javax.swing.JButton();
-        btn3Star = new javax.swing.JButton();
-        btn4Star = new javax.swing.JButton();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         txtComment = new com.fpoly.swing.MyTextField();
@@ -78,6 +264,14 @@ public class RateForm extends javax.swing.JPanel {
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
+        StarRate = new javax.swing.JPanel();
+        StarHover = new javax.swing.JPanel();
+        btn1Star = new javax.swing.JButton();
+        btn2Star = new javax.swing.JButton();
+        btn3Star = new javax.swing.JButton();
+        btn4Star = new javax.swing.JButton();
+        btn5Star = new javax.swing.JButton();
+        Starclik = new javax.swing.JPanel();
         sp = new javax.swing.JScrollPane();
         CardContainer = new javax.swing.JPanel();
 
@@ -112,50 +306,25 @@ public class RateForm extends javax.swing.JPanel {
 
         prg5Star.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(3, 91, 3)));
         prg5Star.setForeground(new java.awt.Color(0, 204, 51));
-        prg5Star.setValue(38);
-        prg5Star.setString("25");
+        prg5Star.setString("");
 
         prg4Star.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(3, 91, 3)));
         prg4Star.setForeground(new java.awt.Color(0, 204, 51));
-        prg4Star.setValue(38);
-        prg4Star.setString("25");
+        prg4Star.setString("");
 
         prg3Star.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(3, 91, 3)));
         prg3Star.setForeground(new java.awt.Color(0, 204, 51));
-        prg3Star.setValue(38);
-        prg3Star.setString("25");
+        prg3Star.setString("");
 
         prg2Star.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(3, 91, 3)));
         prg2Star.setForeground(new java.awt.Color(0, 204, 51));
-        prg2Star.setValue(38);
-        prg2Star.setString("25");
+        prg2Star.setString("");
 
         prg1Star.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(3, 91, 3)));
         prg1Star.setForeground(new java.awt.Color(0, 204, 51));
-        prg1Star.setValue(38);
-        prg1Star.setString("25");
+        prg1Star.setString("");
 
         panelRate.setBackground(new java.awt.Color(255, 255, 255));
-
-        btn2Star.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/fpoly/icons/icons8_star_40px_1.png"))); // NOI18N
-        btn2Star.setBorderPainted(false);
-        btn2Star.setContentAreaFilled(false);
-
-        btn1Star.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/fpoly/icons/icons8_star_40px_1.png"))); // NOI18N
-        btn1Star.setBorderPainted(false);
-        btn1Star.setContentAreaFilled(false);
-
-        btn5Star.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/fpoly/icons/icons8_star_40px_1.png"))); // NOI18N
-        btn5Star.setBorderPainted(false);
-        btn5Star.setContentAreaFilled(false);
-
-        btn3Star.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/fpoly/icons/icons8_star_40px_1.png"))); // NOI18N
-        btn3Star.setBorderPainted(false);
-        btn3Star.setContentAreaFilled(false);
-
-        btn4Star.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/fpoly/icons/icons8_star_40px_1.png"))); // NOI18N
-        btn4Star.setBorderPainted(false);
-        btn4Star.setContentAreaFilled(false);
 
         jLabel13.setText("PLEASE RATE FOR US TO HAVE MORE MOTIVATION :");
 
@@ -174,75 +343,152 @@ public class RateForm extends javax.swing.JPanel {
         jLabel17.setForeground(new java.awt.Color(51, 51, 255));
         jLabel17.setText("Gmail : quanthpd05478@fpt.edu.vn");
 
+        StarRate.setLayout(new java.awt.CardLayout());
+
+        StarHover.setBackground(new java.awt.Color(255, 255, 255));
+
+        btn1Star.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/fpoly/icons/icons8_star_40px_1.png"))); // NOI18N
+        btn1Star.setBorderPainted(false);
+        btn1Star.setContentAreaFilled(false);
+        btn1Star.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn1StarMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btn1StarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btn1StarMouseExited(evt);
+            }
+        });
+
+        btn2Star.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/fpoly/icons/icons8_star_40px_1.png"))); // NOI18N
+        btn2Star.setBorderPainted(false);
+        btn2Star.setContentAreaFilled(false);
+        btn2Star.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btn2StarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btn2StarMouseExited(evt);
+            }
+        });
+
+        btn3Star.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/fpoly/icons/icons8_star_40px_1.png"))); // NOI18N
+        btn3Star.setBorderPainted(false);
+        btn3Star.setContentAreaFilled(false);
+        btn3Star.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btn3StarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btn3StarMouseExited(evt);
+            }
+        });
+
+        btn4Star.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/fpoly/icons/icons8_star_40px_1.png"))); // NOI18N
+        btn4Star.setBorderPainted(false);
+        btn4Star.setContentAreaFilled(false);
+        btn4Star.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btn4StarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btn4StarMouseExited(evt);
+            }
+        });
+
+        btn5Star.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/fpoly/icons/icons8_star_40px_1.png"))); // NOI18N
+        btn5Star.setBorderPainted(false);
+        btn5Star.setContentAreaFilled(false);
+        btn5Star.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btn5StarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btn5StarMouseExited(evt);
+            }
+        });
+
+        javax.swing.GroupLayout StarHoverLayout = new javax.swing.GroupLayout(StarHover);
+        StarHover.setLayout(StarHoverLayout);
+        StarHoverLayout.setHorizontalGroup(
+            StarHoverLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(StarHoverLayout.createSequentialGroup()
+                .addComponent(btn1Star, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btn2Star, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btn3Star, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btn4Star, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btn5Star, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 123, Short.MAX_VALUE))
+        );
+        StarHoverLayout.setVerticalGroup(
+            StarHoverLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(StarHoverLayout.createSequentialGroup()
+                .addGroup(StarHoverLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btn1Star)
+                    .addComponent(btn2Star)
+                    .addComponent(btn3Star)
+                    .addComponent(btn4Star)
+                    .addComponent(btn5Star))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        StarRate.add(StarHover, "card2");
+
+        javax.swing.GroupLayout StarclikLayout = new javax.swing.GroupLayout(Starclik);
+        Starclik.setLayout(StarclikLayout);
+        StarclikLayout.setHorizontalGroup(
+            StarclikLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 389, Short.MAX_VALUE)
+        );
+        StarclikLayout.setVerticalGroup(
+            StarclikLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 51, Short.MAX_VALUE)
+        );
+
+        StarRate.add(Starclik, "card3");
+
         javax.swing.GroupLayout panelRateLayout = new javax.swing.GroupLayout(panelRate);
         panelRate.setLayout(panelRateLayout);
         panelRateLayout.setHorizontalGroup(
             panelRateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(StarRate, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(txtComment, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnRate, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(panelRateLayout.createSequentialGroup()
                 .addGroup(panelRateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelRateLayout.createSequentialGroup()
-                        .addGap(96, 96, 96)
-                        .addComponent(btnRate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(82, 82, 82))
-                    .addGroup(panelRateLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(btn1Star, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btn2Star, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btn3Star, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btn4Star, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btn5Star, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(48, 48, 48))
-                    .addGroup(panelRateLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(txtComment, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(panelRateLayout.createSequentialGroup()
-                        .addGroup(panelRateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panelRateLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(panelRateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(panelRateLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(panelRateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-            .addGroup(panelRateLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         panelRateLayout.setVerticalGroup(
             panelRateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelRateLayout.createSequentialGroup()
                 .addGap(17, 17, 17)
                 .addComponent(jLabel13)
-                .addGap(18, 18, 18)
-                .addGroup(panelRateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btn5Star, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn2Star, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn1Star, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn3Star, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn4Star, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(StarRate, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel14)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtComment, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel15)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(1, 1, 1)
                 .addComponent(jLabel16)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel17)
-                .addGap(32, 32, 32)
+                .addGap(23, 23, 23)
                 .addComponent(btnRate, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout panelOverallLayout = new javax.swing.GroupLayout(panelOverall);
@@ -265,7 +511,7 @@ public class RateForm extends javax.swing.JPanel {
                                 .addComponent(lbl4StarOverall, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGap(6, 6, 6)
                                 .addComponent(lbl5StarOverall, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(panelOverallLayout.createSequentialGroup()
                                 .addComponent(lblOveralStar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGap(13, 13, 13)))
@@ -362,9 +608,57 @@ public class RateForm extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btn1StarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn1StarMouseEntered
+        starColor1();
+    }//GEN-LAST:event_btn1StarMouseEntered
+
+    private void btn2StarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn2StarMouseEntered
+        starColor2();
+    }//GEN-LAST:event_btn2StarMouseEntered
+
+    private void btn3StarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn3StarMouseEntered
+        starColor3();
+    }//GEN-LAST:event_btn3StarMouseEntered
+
+    private void btn4StarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn4StarMouseEntered
+        starColor4();
+    }//GEN-LAST:event_btn4StarMouseEntered
+
+    private void btn5StarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn5StarMouseEntered
+        starColor5();
+    }//GEN-LAST:event_btn5StarMouseEntered
+
+    private void btn1StarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn1StarMouseExited
+        starColorOrigin();
+    }//GEN-LAST:event_btn1StarMouseExited
+
+    private void btn2StarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn2StarMouseExited
+        starColorOrigin();
+    }//GEN-LAST:event_btn2StarMouseExited
+
+    private void btn3StarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn3StarMouseExited
+        starColorOrigin();
+    }//GEN-LAST:event_btn3StarMouseExited
+
+    private void btn4StarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn4StarMouseExited
+        starColorOrigin();
+    }//GEN-LAST:event_btn4StarMouseExited
+
+    private void btn5StarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn5StarMouseExited
+        starColorOrigin();
+    }//GEN-LAST:event_btn5StarMouseExited
+
+    private void btn1StarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn1StarMouseClicked
+        starColor1();
+        btn1StarMouseExited(evt);
+    }//GEN-LAST:event_btn1StarMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel CardContainer;
+    private javax.swing.JPanel StarHover;
+    private javax.swing.JPanel StarRate;
+    private javax.swing.JPanel Starclik;
     private javax.swing.JButton btn1Star;
     private javax.swing.JButton btn2Star;
     private javax.swing.JButton btn3Star;
