@@ -30,6 +30,7 @@ import net.miginfocom.swing.MigLayout;
 import org.jdesktop.animation.timing.Animator;
 import org.jdesktop.animation.timing.TimingTarget;
 import org.jdesktop.animation.timing.TimingTargetAdapter;
+
 public class LoginForm1 extends javax.swing.JDialog {
 
     private MigLayout layout;

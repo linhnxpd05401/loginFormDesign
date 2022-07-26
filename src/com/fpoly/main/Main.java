@@ -56,7 +56,6 @@ public class Main extends javax.swing.JFrame {
     private MainForm main;
     private Animator animator;
     private UserUpdateFrom updateForm;
-    private InsertSubject insertSubject;
     private SubjectDAO subjectDAO;
     private Subject subject;
     private UnitsDAO unitDAO;
@@ -80,7 +79,6 @@ public class Main extends javax.swing.JFrame {
         main = new MainForm();
         header = new Header();
         updateForm = new UserUpdateFrom();
-        insertSubject = new InsertSubject();
         menu.addEvent((int menuIndex, int subMenuIndex) -> {
             System.out.println("Menu Index: " + menuIndex + " Submenu Index: " + subMenuIndex);
             //Menu admin
@@ -191,12 +189,28 @@ public class Main extends javax.swing.JFrame {
                         main.showForm(new TestForm());
                     }
                 }
+                Main this1 = this;
                 if (menuIndex == 3) {
                     if (subMenuIndex == 0) {
                         main.showForm(new InsertTest());
                     }
                     if (subMenuIndex == 1) {
-                        main.showForm(new InsertSubject());
+                        InsertSubject insertSbj = new InsertSubject();
+                        main.showForm(insertSbj);
+                        insertSbj.addEventInsert(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                insertSbj.insertSubject();
+                                main.removeAll();
+                                try {
+                                    this1.dispose();;
+                                    new Main().setVisible(true);
+
+                                } catch (ParseException ex) {
+                                    Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+                                }
+                            }
+                        });
                     }
                 }
             } //Menu user
@@ -320,9 +334,6 @@ public class Main extends javax.swing.JFrame {
             } catch (ParseException ex) {
                 Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
             }
-        });
-        insertSubject.addLoadTestEvent((ActionEvent e) -> {
-            System.out.println("kkkk");
         });
 
         menu.addLogOutEvent((ActionEvent e) -> {

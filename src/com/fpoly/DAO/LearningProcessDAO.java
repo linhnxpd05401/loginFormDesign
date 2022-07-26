@@ -1,6 +1,7 @@
 package com.fpoly.DAO;
 
 import com.fpoly.models.LearningProcess;
+import com.fpoly.models.NumberOfTrainees;
 import com.fpoly.utils.XJdbc;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -12,6 +13,28 @@ public class LearningProcessDAO extends TheLEAEnglishCenterDAO<LearningProcess, 
     String SELECT_ALL = "SELECT * FROM LearningProcess";
     String SELECT_BY_ID = "SELECT * FROM LearningProcess WHERE UserID = ?";
     
+    public List<NumberOfTrainees> selectByMonth() {
+        String sql = "SELECT TOP(5)\n" +
+"		MONTH(RegistrasionDate) as Month,\n" +
+"		COUNT(*) as 'User_Number'\n" +
+"	FROM UserProfile\n" +
+"	GROUP BY MONTH(RegistrasionDate)\n" +
+"	ORDER BY MONTH(RegistrasionDate) DESC";
+        List<NumberOfTrainees> list = new ArrayList<>();
+        try {
+            ResultSet rs = XJdbc.executeQuery(sql);
+            while (rs.next()) {
+                NumberOfTrainees entity = new NumberOfTrainees();
+                entity.setMonth(rs.getInt("Month"));
+                entity.setNumberOfTrainees(rs.getInt("User_Number"));
+                list.add(entity);
+            }
+            rs.getStatement().getConnection().close();
+            return list;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
     
     public List<LearningProcess> selectByUserID(int id) {
         List<LearningProcess> list = selectBySql(SELECT_BY_ID, id);

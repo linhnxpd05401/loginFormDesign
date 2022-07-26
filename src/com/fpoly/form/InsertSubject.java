@@ -13,7 +13,6 @@ import com.fpoly.main.Main;
 import com.fpoly.models.AnswerAndQuestion;
 import com.fpoly.models.Subject;
 import com.fpoly.models.Test;
-import com.fpoly.swing.button2;
 import com.fpoly.utils.XImage;
 import com.fpoly.utils.XValidate;
 import java.awt.Color;
@@ -21,10 +20,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.io.File;
-import java.text.ParseException;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JScrollPane;
@@ -218,6 +214,20 @@ public class InsertSubject extends javax.swing.JPanel {
 
     public void addLoadTestEvent(ActionListener event) {
         btnLoad.addActionListener(event);
+    }
+    
+    public void addEventInsert(ActionListener event) {
+        btnInsert.addActionListener(event);
+        
+    }
+    
+    public void insertSubject() {
+        if (checkNull()) {
+                SubjectDAO sbDAO = new SubjectDAO();
+                Subject sb = getModeSubjct();
+                sbDAO.insert(sb);
+                loadTableSubject();
+            }
     }
 
     @SuppressWarnings("unchecked")
@@ -607,13 +617,7 @@ public class InsertSubject extends javax.swing.JPanel {
 
     private void btnInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertActionPerformed
 
-            if (checkNull()) {
-
-                SubjectDAO sbDAO = new SubjectDAO();
-                Subject sb = getModeSubjct();
-                sbDAO.insert(sb);
-                loadTableSubject();
-            }
+            
 
     }//GEN-LAST:event_btnInsertActionPerformed
 
