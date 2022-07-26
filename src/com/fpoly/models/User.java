@@ -12,6 +12,7 @@ import java.util.Date;
  * @author nxlin
  */
 public class User {
+
     int userID;
     int accountID;
     String userName;
@@ -19,7 +20,7 @@ public class User {
     String phone;
     String addres;
     boolean gender;
-    Date birthday;
+    Date birthday, RegistrasionDate;
     String image;
     int rank;
     int coin;
@@ -27,7 +28,7 @@ public class User {
     public User() {
     }
 
-    public User(int userID, int accountID, String userName, String email, String phone, String addres, boolean gender, Date birthday, String image, int rank, int coin) {
+    public User(int userID, int accountID, String userName, String email, String phone, String addres, boolean gender, Date birthday, String image, int rank, int coin, Date RegistrasionDate) {
         this.userID = userID;
         this.accountID = accountID;
         this.userName = userName;
@@ -39,6 +40,7 @@ public class User {
         this.image = image;
         this.rank = rank;
         this.coin = coin;
+        this.RegistrasionDate = RegistrasionDate;
     }
 
     public User(int accountID, String userName, String email) {
@@ -72,13 +74,14 @@ public class User {
         this.userID = userID;
         this.coin = coin;
     }
-    
-    
-    
-    
-    
-    
-    
+
+    public Date getRegistrasionDate() {
+        return RegistrasionDate;
+    }
+
+    public void setRegistrasionDate(Date RegistrasionDate) {
+        this.RegistrasionDate = RegistrasionDate;
+    }
 
     public int getUserID() {
         return userID;
@@ -167,6 +170,5 @@ public class User {
     public void setCoin(int coin) {
         this.coin = coin;
     }
-    
-    
+
 }
