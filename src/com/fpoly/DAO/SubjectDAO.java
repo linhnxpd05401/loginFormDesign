@@ -17,6 +17,33 @@ import java.util.List;
  */
 public class SubjectDAO extends TheLEAEnglishCenterDAO<Subject, String>{
     
+    String INSERT_SUB="INSERT INTO Subject(SubjectName,Note,SubjectImage,PassingPoint) VALUES(?,?,?,?)";
+    
+    String SELECT_ALL = "SELECT * FROM Subject";
+    
+    String UPDATE_SUBJECT = "UPDATE Subject SET SubjectName = ?,Note = ?, SubjectImage = ?,PassingPoint = ? WHERE SubjectID=?";
+    
+    
+     public List<Object[]> SELECT_MODEL() {
+        List<Object[]> list = new ArrayList<>();
+        try {
+            ResultSet rs = XJdbc.executeQuery(SELECT_ALL);
+            while (rs.next()) {
+                Object[] model = {
+                    rs.getInt("SubjectID"),
+                    rs.getString("SubjectName"),
+                    rs.getString("Note"),
+                    rs.getInt("PassingPoint")
+                };
+                list.add(model);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+     
+     
     
     public Subject selectByIDInt(int ID) {
         String sql = "SELECT * FROM Subject WHERE SubjectID = ?";
@@ -28,12 +55,12 @@ public class SubjectDAO extends TheLEAEnglishCenterDAO<Subject, String>{
     }
     @Override
     public void insert(Subject entity) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        XJdbc.update(INSERT_SUB,entity.getSubjectName(),entity.getNote(),entity.getSubjectImage(),entity.getPassingPint());
     }
 
     @Override
     public void update(Subject entity) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        XJdbc.update(UPDATE_SUBJECT, entity.getSubjectName(),entity.getNote(),entity.getSubjectImage(),entity.getPassingPint(),entity.getSubjectID());
     }
 
     @Override

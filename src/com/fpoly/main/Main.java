@@ -8,6 +8,7 @@ import com.fpoly.components.Header;
 import com.fpoly.components.Menu;
 import com.fpoly.dialog.MessageDialog;
 import com.fpoly.form.FormHome;
+import com.fpoly.form.InsertSubject;
 import com.fpoly.form.InsertTest;
 import com.fpoly.form.MainForm;
 import com.fpoly.form.RateForm;
@@ -24,6 +25,7 @@ import com.fpoly.swing.PopUpMenu;
 import com.fpoly.swing.icon.GoogleMaterialDesignIcons;
 import com.fpoly.swing.icon.IconFontSwing;
 import com.fpoly.utils.Auth;
+import com.fpoly.utils.XValidate;
 import java.awt.Component;
 import java.awt.Desktop;
 import java.awt.event.ActionEvent;
@@ -54,6 +56,7 @@ public class Main extends javax.swing.JFrame {
     private MainForm main;
     private Animator animator;
     private UserUpdateFrom updateForm;
+    private InsertSubject insertSubject;
     private SubjectDAO subjectDAO;
     private Subject subject;
     private UnitsDAO unitDAO;
@@ -77,6 +80,7 @@ public class Main extends javax.swing.JFrame {
         main = new MainForm();
         header = new Header();
         updateForm = new UserUpdateFrom();
+        insertSubject = new InsertSubject();
         menu.addEvent((int menuIndex, int subMenuIndex) -> {
             System.out.println("Menu Index: " + menuIndex + " Submenu Index: " + subMenuIndex);
             //Menu admin
@@ -190,6 +194,9 @@ public class Main extends javax.swing.JFrame {
                 if (menuIndex == 3) {
                     if (subMenuIndex == 0) {
                         main.showForm(new InsertTest());
+                    }
+                    if (subMenuIndex == 1) {
+                        main.showForm(new InsertSubject());
                     }
                 }
             } //Menu user
@@ -314,6 +321,10 @@ public class Main extends javax.swing.JFrame {
                 Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
+        insertSubject.addLoadTestEvent((ActionEvent e) -> {
+            System.out.println("kkkk");
+        });
+
         menu.addLogOutEvent((ActionEvent e) -> {
             Auth.clear();
             this.dispose();
@@ -346,7 +357,7 @@ public class Main extends javax.swing.JFrame {
                     Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
-            
+
         });
         menu.initMenuItem();
 
@@ -355,26 +366,26 @@ public class Main extends javax.swing.JFrame {
         header.addWebEvent(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                    String url = "https://www.facebook.com/The-LEA-Academy-101254109350178";
-                    Desktop desktop = Desktop.isDesktopSupported() ? Desktop.getDesktop() : null;
-                    if (desktop != null && desktop.isSupported(Desktop.Action.BROWSE)) {
-                        try {
-                            desktop.browse(new URI(url));
-                        } catch (URISyntaxException ex) {
-                        } catch (IOException ex) {
-                        }
+                String url = "https://www.facebook.com/The-LEA-Academy-101254109350178";
+                Desktop desktop = Desktop.isDesktopSupported() ? Desktop.getDesktop() : null;
+                if (desktop != null && desktop.isSupported(Desktop.Action.BROWSE)) {
+                    try {
+                        desktop.browse(new URI(url));
+                    } catch (URISyntaxException ex) {
+                    } catch (IOException ex) {
                     }
+                }
             }
 
         });
-        header.addRateEvent(new ActionListener(){
+        header.addRateEvent(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                  main.showForm(new RateForm());
+                main.showForm(new RateForm());
             }
-        
+
         });
-        
+
         bg.add(main, "w 100%, h 100%");
         TimingTarget target = new TimingTargetAdapter() {
             @Override

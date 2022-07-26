@@ -205,6 +205,11 @@ public class UserUpdateFrom extends javax.swing.JPanel {
         btnCancel.setForeground(new java.awt.Color(205, 41, 0));
         btnCancel.setText("Cancel");
         btnCancel.setPreferredSize(new java.awt.Dimension(39, 40));
+        btnCancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -325,6 +330,10 @@ public class UserUpdateFrom extends javax.swing.JPanel {
     private void btnChooseImageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChooseImageActionPerformed
         this.ChooseImage();
     }//GEN-LAST:event_btnChooseImageActionPerformed
+
+    private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCancelActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
