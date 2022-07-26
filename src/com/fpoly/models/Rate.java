@@ -5,22 +5,18 @@ import java.util.Date;
 
 
 public class Rate {
-    int RateID,Star,Like,DisLike,UserID;
+    int RateID,Star,UserID;
     Date Date;
-    String UserDisLike,UserLike,Comment;
+    String Comment;
 
     public Rate() {
     }
 
-    public Rate(int RateID, int Star, int Like, int DisLike, int UserID, Date Date, String UserDisLike, String UserLike,String Comment) {
+    public Rate(int RateID, int Star, int UserID, Date Date, String Comment) {
         this.RateID = RateID;
         this.Star = Star;
-        this.Like = Like;
-        this.DisLike = DisLike;
         this.UserID = UserID;
         this.Date = Date;
-        this.UserDisLike = UserDisLike;
-        this.UserLike = UserLike;
         this.Comment = Comment;
     }
 
@@ -40,22 +36,6 @@ public class Rate {
         this.Star = Star;
     }
 
-    public int getLike() {
-        return Like;
-    }
-
-    public void setLike(int Like) {
-        this.Like = Like;
-    }
-
-    public int getDisLike() {
-        return DisLike;
-    }
-
-    public void setDisLike(int DisLike) {
-        this.DisLike = DisLike;
-    }
-
     public int getUserID() {
         return UserID;
     }
@@ -72,22 +52,6 @@ public class Rate {
         this.Date = Date;
     }
 
-    public String getUserDisLike() {
-        return UserDisLike;
-    }
-
-    public void setUserDisLike(String UserDisLike) {
-        this.UserDisLike = UserDisLike;
-    }
-
-    public String getUserLike() {
-        return UserLike;
-    }
-
-    public void setUserLike(String UserLike) {
-        this.UserLike = UserLike;
-    }
-
     public String getComment() {
         return Comment;
     }
@@ -95,6 +59,7 @@ public class Rate {
     public void setComment(String Comment) {
         this.Comment = Comment;
     }
+    
     
     
     

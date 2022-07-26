@@ -1,5 +1,7 @@
 package com.fpoly.DAO;
 
+import com.fpoly.dialog.MessageDialog;
+import com.fpoly.main.Main;
 import com.fpoly.models.Rate;
 import com.fpoly.utils.XJdbc;
 import java.sql.ResultSet;
@@ -13,46 +15,29 @@ import sun.security.rsa.RSACore;
 public class RateDAO extends TheLEAEnglishCenterDAO<Rate, String> {
 
     String SELECT_ALL_RATE = "SELECT * FROM Rate ORDER BY DATE DESC";
-    String SELECT_CHECK_LIKE = "SELECT * FROM Rate WHERE UserLike LIKE ? AND RateID = ?";
-    String SELECT_CHECK_DISLIKE = "SELECT * FROM Rate WHERE UserDisLike LIKE ? AND RateID = ?";
-    String LIKED_ACTION = "UPDATE Rate SET Like = ? , UserLike = ? WHERE RateID = ?";
     String SELECT_ALL_ID = "SELECT * FROM Rate WHERE RateID = ?";
     String COUNT_STAR_RATE = "SELECT COUNT(Star) As count FROM Rate WHERE Star = ? GROUP BY Star";
 
-    public List<Rate> checkLike(String KeyString, int Id) {
-        return selectBySql(SELECT_CHECK_LIKE, KeyString, Id);
-    }
-    
-    public int countStar(int Star){
+    String INSERT_RATE = "INSERT INTO Rate(Star,Comment,UserID,Date) VALUES (?,?,?,?)";
+
+    public int countStar(int Star) {
         int Times = 0;
         try {
             ResultSet rs = XJdbc.executeQuery(COUNT_STAR_RATE, Star);
-            while (rs.next()) {                
-                  Times = rs.getInt("count");
+            while (rs.next()) {
+                Times = rs.getInt("count");
             }
         } catch (SQLException ex) {
         }
         return Times;
     }
-    
-    public List<Rate> checkDisLike(String KeyString, int Id) {
-        return selectBySql(SELECT_CHECK_DISLIKE, KeyString, Id);
-    }
-
-    public void Like(int like, String UserLike, int ID) {
-        XJdbc.update(LIKED_ACTION, like, UserLike, ID);
-    }
-//   public Rate checkDisLike(String KeyString,int Id) {
-//        List<Rate> rt = this.selectBySql(SELECT_CHECK_LIKE, KeyString,Id);
-//        if (rt.isEmpty()) {
-//            return null;
-//        }
-//        return rt.get(0);
-//    }
 
     @Override
     public void insert(Rate entity) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        XJdbc.update(INSERT_RATE, entity.getStar(), entity.getComment(), entity.getUserID(), entity.getDate());
+        MessageDialog mess = new MessageDialog(Main.getFrames()[0], true);
+        mess.showMessage(MessageDialog.MessageType.INFORMATION, "THANKS FOR YOUR RATE !");
+
     }
 
     @Override
@@ -86,10 +71,6 @@ public class RateDAO extends TheLEAEnglishCenterDAO<Rate, String> {
             while (rs.next()) {
                 Rate rt = new Rate();
                 rt.setRateID(rs.getInt("RateID"));
-                rt.setLike(rs.getInt("Like"));
-                rt.setDisLike(rs.getInt("DisLike"));
-                rt.setUserLike(rs.getString("UserLike"));
-                rt.setUserDisLike(rs.getString("UserDisLike"));
                 rt.setStar(rs.getInt("Star"));
                 rt.setUserID(rs.getInt("UserID"));
                 rt.setComment(rs.getString("Comment"));
@@ -101,8 +82,6 @@ public class RateDAO extends TheLEAEnglishCenterDAO<Rate, String> {
         }
         return list;
     }
-    
-
 
     @Override
     public Rate selectById(String id) {
