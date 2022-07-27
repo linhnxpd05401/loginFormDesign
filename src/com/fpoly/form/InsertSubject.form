@@ -30,7 +30,8 @@
           <Group type="102" alignment="1" attributes="0">
               <Component id="pnlIn4" min="-2" pref="506" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
-              <Component id="jPanel3" min="-2" pref="280" max="-2" attributes="0"/>
+              <Component id="jPanel3" min="-2" pref="187" max="-2" attributes="0"/>
+              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -140,7 +141,7 @@
             </Component>
             <Component class="com.fpoly.swing.TextField2" name="txtFind">
               <Properties>
-                <Property name="labelText" type="java.lang.String" value="Input Test Number "/>
+                <Property name="labelText" type="java.lang.String" value="Input Subject Number "/>
               </Properties>
             </Component>
             <Component class="com.fpoly.swing.button2" name="btnAnsInsert">
@@ -169,9 +170,9 @@
                     <Property name="labelText" type="java.lang.String" value="Right Answer"/>
                   </Properties>
                 </Component>
-                <Component class="com.fpoly.swing.TextField2" name="txtTestNumber">
+                <Component class="com.fpoly.swing.TextField2" name="txtSubjectNumber">
                   <Properties>
-                    <Property name="labelText" type="java.lang.String" value="Test Number"/>
+                    <Property name="labelText" type="java.lang.String" value="Subject Number"/>
                   </Properties>
                 </Component>
                 <Component class="com.fpoly.swing.TextField2" name="txtPoint1">
@@ -294,7 +295,7 @@
                               <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
                               <Component id="txtSubject" max="32767" attributes="0"/>
                               <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
-                              <Component id="textAreaScroll1" max="32767" attributes="0"/>
+                              <Component id="textAreaScroll1" pref="0" max="32767" attributes="0"/>
                           </Group>
                           <Component id="lblsubjectIamge" min="-2" pref="305" max="-2" attributes="0"/>
                       </Group>
@@ -443,7 +444,7 @@
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                       <Table columnCount="10" rowCount="4">
                         <Column editable="false" title="Numerical Oder" type="java.lang.Object"/>
-                        <Column editable="false" title="Test Number" type="java.lang.Object"/>
+                        <Column editable="false" title="Subject Number" type="java.lang.Object"/>
                         <Column editable="false" title="Request " type="java.lang.Object"/>
                         <Column editable="false" title="Question" type="java.lang.Object"/>
                         <Column editable="false" title="Answer 1" type="java.lang.Object"/>
@@ -477,32 +478,32 @@
                           <Renderer/>
                         </Column>
                         <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                          <Title value="Answer 1"/>
+                          <Title/>
                           <Editor/>
                           <Renderer/>
                         </Column>
                         <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                          <Title value="Answer 2"/>
+                          <Title/>
                           <Editor/>
                           <Renderer/>
                         </Column>
                         <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                          <Title value="Answer 3"/>
+                          <Title/>
                           <Editor/>
                           <Renderer/>
                         </Column>
                         <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                          <Title value="Answer 4"/>
+                          <Title/>
                           <Editor/>
                           <Renderer/>
                         </Column>
                         <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                          <Title value="Right Answer "/>
+                          <Title/>
                           <Editor/>
                           <Renderer/>
                         </Column>
                         <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                          <Title value="Point"/>
+                          <Title/>
                           <Editor/>
                           <Renderer/>
                         </Column>

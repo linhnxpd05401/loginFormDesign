@@ -5,12 +5,14 @@
 package com.fpoly.form;
 
 import com.fpoly.DAO.AnswerAndQuestionDao;
+import com.fpoly.DAO.AnswerAndQuestionForExercciseDAO;
 import com.fpoly.DAO.SubjectDAO;
 import com.fpoly.DAO.TestDAO;
 import com.fpoly.components.Menu;
 import com.fpoly.dialog.MessageDialog;
 import com.fpoly.main.Main;
 import com.fpoly.models.AnswerAndQuestion;
+import com.fpoly.models.AnswerAndQuestionForExerccise;
 import com.fpoly.models.Subject;
 import com.fpoly.models.Test;
 import com.fpoly.utils.XImage;
@@ -90,7 +92,7 @@ public class InsertSubject extends javax.swing.JPanel {
     public void loadTableAns() {
         DefaultTableModel model = (DefaultTableModel) jTable2.getModel();
         model.setRowCount(0);
-        AnswerAndQuestionDao aqqDao = new AnswerAndQuestionDao();
+        AnswerAndQuestionForExercciseDAO aqqDao = new AnswerAndQuestionForExercciseDAO();
         List<Object[]> list = aqqDao.SELECT_MODEL();
         for (Object[] row : list) {
             model.addRow(row);
@@ -128,12 +130,12 @@ public class InsertSubject extends javax.swing.JPanel {
 
     }
 
-    void setModelAns(AnswerAndQuestion Ans) {
-        TestDAO tsDAO = new TestDAO();
-        Test test = tsDAO.SELECT_BY_ID(Ans.getTestID());
+    void setModelAns(AnswerAndQuestionForExerccise Ans) {
+        SubjectDAO sbDAO = new SubjectDAO();
+        Subject sb = sbDAO.selectByIDInt(Ans.getSubjectID());
         txtRequest.setText(Ans.getRequest());
         txtQues.setText(Ans.getQuestionContent());
-        txtTestNumber.setText(String.valueOf(Ans.getTestID()));
+        txtSubjectNumber.setText(String.valueOf(Ans.getSubjectID()));
         txtAns1.setText(Ans.getAnswer1());
         txtAns2.setText(Ans.getAnswer2());
         txtAns3.setText(Ans.getAnswer3());
@@ -145,7 +147,7 @@ public class InsertSubject extends javax.swing.JPanel {
     void Clear() {
         txtRequest.setText("");
         txtQues.setText("");
-        txtTestNumber.setText("");
+        txtSubjectNumber.setText("");
         txtAns1.setText("");
         txtAns2.setText("");
         txtAns3.setText("");
@@ -165,11 +167,11 @@ public class InsertSubject extends javax.swing.JPanel {
         return flag;
     }
 
-    AnswerAndQuestion getModelAns() {
-        AnswerAndQuestion Ans = new AnswerAndQuestion();
+    AnswerAndQuestionForExerccise getModelAns() {
+        AnswerAndQuestionForExerccise Ans = new AnswerAndQuestionForExerccise();
         int in = jTable2.getSelectedRow();
         Ans.setQuestionID((int) jTable2.getValueAt(in, 0));
-        Ans.setTestID(Integer.parseInt(txtTestNumber.getText()));
+        Ans.setSubjectID(Integer.parseInt(txtSubjectNumber.getText()));
         Ans.setRequest(txtRequest.getText());
         Ans.setQuestionContent(txtQues.getText());
         Ans.setAnswer1(txtAns1.getText());
@@ -241,7 +243,7 @@ public class InsertSubject extends javax.swing.JPanel {
         btnAnsInsert = new com.fpoly.swing.button2();
         jPanel1 = new javax.swing.JPanel();
         txtRightAns = new com.fpoly.swing.TextField2();
-        txtTestNumber = new com.fpoly.swing.TextField2();
+        txtSubjectNumber = new com.fpoly.swing.TextField2();
         txtPoint1 = new com.fpoly.swing.TextField2();
         txContent = new com.fpoly.swing.textarea.TextAreaScroll();
         txtQues = new com.fpoly.swing.textarea.TextArea();
@@ -285,7 +287,7 @@ public class InsertSubject extends javax.swing.JPanel {
             }
         });
 
-        txtFind.setLabelText("Input Test Number ");
+        txtFind.setLabelText("Input Subject Number ");
 
         btnAnsInsert.setText("INSERT");
         btnAnsInsert.addActionListener(new java.awt.event.ActionListener() {
@@ -300,8 +302,8 @@ public class InsertSubject extends javax.swing.JPanel {
         txtRightAns.setLabelText("Right Answer");
         jPanel1.add(txtRightAns);
 
-        txtTestNumber.setLabelText("Test Number");
-        jPanel1.add(txtTestNumber);
+        txtSubjectNumber.setLabelText("Subject Number");
+        jPanel1.add(txtSubjectNumber);
 
         txtPoint1.setLabelText("Point");
         jPanel1.add(txtPoint1);
@@ -489,7 +491,7 @@ public class InsertSubject extends javax.swing.JPanel {
                         .addGap(60, 60, 60)
                         .addComponent(txtSubject, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(50, 50, 50)
-                        .addComponent(textAreaScroll1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(textAreaScroll1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                     .addComponent(lblsubjectIamge, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(40, 40, 40)
                 .addGroup(AnswerAndQuestionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -518,7 +520,7 @@ public class InsertSubject extends javax.swing.JPanel {
                 {null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Numerical Oder", "Test Number", "Request ", "Question", "Answer 1", "Answer 2", "Answer 3", "Answer 4", "Right Answer ", "Point"
+                "Numerical Oder", "Subject Number", "Request ", "Question", "Answer 1", "Answer 2", "Answer 3", "Answer 4", "Right Answer ", "Point"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -535,14 +537,6 @@ public class InsertSubject extends javax.swing.JPanel {
             }
         });
         jScrollPane1.setViewportView(jTable2);
-        if (jTable2.getColumnModel().getColumnCount() > 0) {
-            jTable2.getColumnModel().getColumn(4).setHeaderValue("Answer 1");
-            jTable2.getColumnModel().getColumn(5).setHeaderValue("Answer 2");
-            jTable2.getColumnModel().getColumn(6).setHeaderValue("Answer 3");
-            jTable2.getColumnModel().getColumn(7).setHeaderValue("Answer 4");
-            jTable2.getColumnModel().getColumn(8).setHeaderValue("Right Answer ");
-            jTable2.getColumnModel().getColumn(9).setHeaderValue("Point");
-        }
 
         PanelAnswerFull.add(jScrollPane1, java.awt.BorderLayout.CENTER);
 
@@ -602,7 +596,8 @@ public class InsertSubject extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(pnlIn4, javax.swing.GroupLayout.PREFERRED_SIZE, 506, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -617,20 +612,20 @@ public class InsertSubject extends javax.swing.JPanel {
     }//GEN-LAST:event_tablSubMousePressed
 
     private void btnAnsUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnsUpdateActionPerformed
-        AnswerAndQuestionDao AnsdDao = new AnswerAndQuestionDao();
+       // AnswerAndQuestionForExercciseDAO AnsdDao = new AnswerAndQuestionForExercciseDAO();
         if (XValidate.checkNullText(txtRequest)
                 && XValidate.checkNullTextAr(txtQues)
                 && XValidate.checkNullText(txtRightAns)
                 && XValidate.checkNullText(txtPoint1)
-                && XValidate.checkNullText(txtTestNumber)
+                && XValidate.checkNullText(txtSubjectNumber)
                 && XValidate.checkNullText(txtAns1)
                 && XValidate.checkNullText(txtAns2)
                 && XValidate.checkNullText(txtAns3)
                 && XValidate.checkNullText(txtAns4)) {
             if (XValidate.isNumber(txtPoint1)
-                    && XValidate.isNumber(txtTestNumber)) {
-                AnswerAndQuestion Ans = getModelAns();
-                AnswerAndQuestionDao andQuestionDao = new AnswerAndQuestionDao();
+                    && XValidate.isNumber(txtSubjectNumber)) {
+                AnswerAndQuestionForExerccise Ans = getModelAns();
+                AnswerAndQuestionForExercciseDAO andQuestionDao = new AnswerAndQuestionForExercciseDAO();
                 andQuestionDao.update(Ans);
                 loadTableAns();
                 Clear();
@@ -664,12 +659,12 @@ public class InsertSubject extends javax.swing.JPanel {
                 int row = jTable2.getSelectedRow();
                 if (row >= 0) {
                     int quesId = (int) jTable2.getValueAt(row, 0);
-                    AnswerAndQuestionDao aaqDao = new AnswerAndQuestionDao();
-                    AnswerAndQuestion ans = aaqDao.SELECT_BY_ID(quesId);
+                    AnswerAndQuestionForExercciseDAO asDAO = new AnswerAndQuestionForExercciseDAO();
+                    AnswerAndQuestionForExerccise ans = asDAO.SELECT_BY_ID(quesId);
                     if (ans != null) {
                         setModelAns(ans);
                     } else {
-                        System.out.println("ngu");
+                       
                     }
                 }
             }
@@ -700,24 +695,24 @@ public class InsertSubject extends javax.swing.JPanel {
                 && XValidate.checkNullTextAr(txtQues)
                 && XValidate.checkNullText(txtRightAns)
                 && XValidate.checkNullText(txtPoint1)
-                && XValidate.checkNullText(txtTestNumber)
+                && XValidate.checkNullText(txtSubjectNumber)
                 && XValidate.checkNullText(txtAns1)
                 && XValidate.checkNullText(txtAns2)
                 && XValidate.checkNullText(txtAns3)
                 && XValidate.checkNullText(txtAns4)) {
             if (XValidate.isNumber(txtPoint1)
-                    && XValidate.isNumber(txtTestNumber)) {
-                AnswerAndQuestion Ans = new AnswerAndQuestion();
-                Ans.setTestID(Integer.parseInt(txtTestNumber.getText()));
+                    && XValidate.isNumber(txtSubjectNumber)) {
+                AnswerAndQuestionForExerccise Ans = new AnswerAndQuestionForExerccise();
+                Ans.setSubjectID(Integer.parseInt(txtSubjectNumber.getText()));
                 Ans.setRequest(txtRequest.getText());
                 Ans.setQuestionContent(txtQues.getText());
-                Ans.setAnswer1(txtAns1.getText());
+                Ans.setAnswer1(txtAns1.getText()); 
                 Ans.setAnswer2(txtAns2.getText());
                 Ans.setAnswer3(txtAns3.getText());
                 Ans.setAnswer4(txtAns4.getText());
                 Ans.setRightAnswer(txtRightAns.getText());
                 Ans.setPoint(Integer.parseInt(txtPoint1.getText()));
-                AnswerAndQuestionDao andQuestionDao = new AnswerAndQuestionDao();
+                AnswerAndQuestionForExercciseDAO andQuestionDao = new AnswerAndQuestionForExercciseDAO();
                 andQuestionDao.insert(Ans);
                 loadTableAns();
                 Clear();
@@ -791,6 +786,6 @@ public class InsertSubject extends javax.swing.JPanel {
     private com.fpoly.swing.TextField2 txtRequest;
     private com.fpoly.swing.TextField2 txtRightAns;
     private com.fpoly.swing.TextField2 txtSubject;
-    private com.fpoly.swing.TextField2 txtTestNumber;
+    private com.fpoly.swing.TextField2 txtSubjectNumber;
     // End of variables declaration//GEN-END:variables
 }
