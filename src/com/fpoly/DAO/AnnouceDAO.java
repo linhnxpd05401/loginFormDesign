@@ -24,6 +24,8 @@ public class AnnouceDAO extends TheLEAEnglishCenterDAO<Announce, String> {
     private String SELECT_ALL_ORDER = "Select * from Announce order by DateCreate desc";
     private String SELECT_BY_TAG = "Select * from Announce where Tag = ?";
     private String SELECT_BY_ID = "Select * from Announce where UserID = ?";
+    
+    private String INSERT_INTO = "INSERT INTO Announce(Tag,Content,DateCreate,UserID) VALUES (?,?,?,?)";
 
     public Announce selectByTag(String Tag) {
         List<Announce> ac = this.selectBySql(SELECT_BY_TAG, Tag);

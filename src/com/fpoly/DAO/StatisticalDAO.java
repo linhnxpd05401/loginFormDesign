@@ -19,6 +19,50 @@ public class StatisticalDAO {
     
     String Call_Proc_User_Number_By_Month = "{call sp_ThongKeNguoiHoc}";
     
+    String Call_Proc_Statistical_Test ="{call SP_STATISTICAL_TEST}";
+    
+    String Call_Proc_Statistical_Subject ="{call SP_STATISTICAL_SUBJECT}";
+    
+     public List<Object[]> getStatisticalTest() {
+        List<Object[]> list = new ArrayList<>();
+        try {
+            ResultSet rs = XJdbc.executeQuery(Call_Proc_Statistical_Test);
+            while (rs.next()) {
+                Object[] model = {
+                    rs.getString("TestName"),
+                    rs.getInt("TestID"),
+                    rs.getInt("Times"),
+                    rs.getInt("Hightest"),
+                    rs.getInt("Lowest")
+                };
+                list.add(model);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+     
+      public List<Object[]> getStatisticalSubject() {
+        List<Object[]> list = new ArrayList<>();
+        try {
+            ResultSet rs = XJdbc.executeQuery(Call_Proc_Statistical_Subject);
+            while (rs.next()) {
+                Object[] model = {
+                    rs.getString("SubjectName"),
+                    rs.getInt("SubjectID"),
+                    rs.getInt("TIMES"),
+                    rs.getInt("HIGHTEST"),
+                    rs.getInt("LOWEST")
+                };
+                list.add(model);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+    
 
     public List<Object[]> getStatisticalMarkAndCoin() {
         List<Object[]> list = new ArrayList<>();
