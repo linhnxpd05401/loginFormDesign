@@ -13,6 +13,7 @@ import com.fpoly.form.FormHome;
 import com.fpoly.form.InsertSubject;
 import com.fpoly.form.InsertTest;
 import com.fpoly.form.MainForm;
+import com.fpoly.form.MapForm;
 import com.fpoly.form.RateForm;
 import com.fpoly.form.StatiscalTestForm;
 import com.fpoly.form.SubjectForm;
@@ -402,6 +403,13 @@ public class Main extends javax.swing.JFrame {
                 }
             }
 
+        });
+        header.addEventLocation(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+               main.showForm(new MapForm());
+            }
+            
         });
         header.addRateEvent(new ActionListener() {
             @Override
