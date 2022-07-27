@@ -7,6 +7,7 @@ import com.fpoly.DAO.UnitsDAO;
 import com.fpoly.components.Header;
 import com.fpoly.components.Menu;
 import com.fpoly.dialog.MessageDialog;
+import com.fpoly.form.AddNewAnnounce;
 import com.fpoly.form.NumberOfTraineesForm;
 import com.fpoly.form.FormHome;
 import com.fpoly.form.InsertSubject;
@@ -213,6 +214,9 @@ public class Main extends javax.swing.JFrame {
                                 }
                             }
                         });
+                    }
+                    if (subMenuIndex == 2) {
+                            main.showForm(new AddNewAnnounce());
                     }
                 }
                 if(menuIndex == 4) {

@@ -102,14 +102,10 @@ public class Menu extends javax.swing.JPanel {
         if (Auth.isAdmin()) {
             addMenu(new ModelMenu(new ImageIcon(getClass().getResource("/com/fpoly/icons/user_secured_20px.png")), "My Info", "Update My Info", "Change password"));
             addMenu(new ModelMenu(new ImageIcon(getClass().getResource("/com/fpoly/icons/elective_20px.png")), "Subjects", getSubmenu()));
-<<<<<<< HEAD
             addMenu(new ModelMenu(new ImageIcon(getClass().getResource("/com/fpoly/icons/3.png")), "Test", "Testing"));
-            addMenu(new ModelMenu(new ImageIcon(getClass().getResource("/com/fpoly/icons/administrative_tools_20px.png")), "Management", "Create Test", "Create Subject"));
+            addMenu(new ModelMenu(new ImageIcon(getClass().getResource("/com/fpoly/icons/administrative_tools_20px.png")), "Management", "Create Test", "Create Subject","Create Announce"));
             addMenu(new ModelMenu(new ImageIcon(getClass().getResource("/com/fpoly/icons/combo_chart_20px.png")), "Statistics", "Number Of trainees", "Testing Results", "Learning Results"));
-=======
-            addMenu(new ModelMenu(new ImageIcon(getClass().getResource("/com/fpoly/icons/3.png")), "Test", "Testing", "Ranking"));
-            addMenu(new ModelMenu(new ImageIcon(getClass().getResource("/com/fpoly/icons/administrative_tools_20px.png")), "Management", "Create Test", "Create Subject", "List","Upload Announce"));
->>>>>>> 9d130785f204c356fbbd256ac3e6fe8b8a2f0895
+
         } else {
             addMenu(new ModelMenu(new ImageIcon(getClass().getResource("/com/fpoly/icons/user_secured_20px.png")), "My Info", "Update My Info", "Change password", "Delete Account"));
             addMenu(new ModelMenu(new ImageIcon(getClass().getResource("/com/fpoly/icons/elective_20px.png")), "Subjects", getSubmenu()));
