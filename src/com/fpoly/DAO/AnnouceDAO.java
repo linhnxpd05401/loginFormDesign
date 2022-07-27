@@ -4,6 +4,9 @@
  */
 package com.fpoly.DAO;
 
+import com.fpoly.components.Message;
+import com.fpoly.dialog.MessageDialog;
+import com.fpoly.main.Main;
 import com.fpoly.models.Announce;
 import com.fpoly.utils.XDate;
 import com.fpoly.utils.XJdbc;
@@ -44,7 +47,9 @@ public class AnnouceDAO extends TheLEAEnglishCenterDAO<Announce, String> {
 
     @Override
     public void insert(Announce entity) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        XJdbc.update(INSERT_INTO, entity.getTag(),entity.getContent(),entity.getDateCreate(),entity.getUserID());
+        MessageDialog mess = new MessageDialog(Main.getFrames()[0],true);
+        mess.showMessage(MessageDialog.MessageType.INFORMATION, "Uploaded the Notice ");
     }
 
     @Override

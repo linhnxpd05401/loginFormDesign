@@ -103,7 +103,7 @@ public class Menu extends javax.swing.JPanel {
             addMenu(new ModelMenu(new ImageIcon(getClass().getResource("/com/fpoly/icons/user_secured_20px.png")), "My Info", "Update My Info", "Change password"));
             addMenu(new ModelMenu(new ImageIcon(getClass().getResource("/com/fpoly/icons/elective_20px.png")), "Subjects", getSubmenu()));
             addMenu(new ModelMenu(new ImageIcon(getClass().getResource("/com/fpoly/icons/3.png")), "Test", "Testing", "Ranking"));
-            addMenu(new ModelMenu(new ImageIcon(getClass().getResource("/com/fpoly/icons/administrative_tools_20px.png")), "Management", "Create Test", "Create Subject", "List"));
+            addMenu(new ModelMenu(new ImageIcon(getClass().getResource("/com/fpoly/icons/administrative_tools_20px.png")), "Management", "Create Test", "Create Subject", "List","Upload Announce"));
         } else {
             addMenu(new ModelMenu(new ImageIcon(getClass().getResource("/com/fpoly/icons/user_secured_20px.png")), "My Info", "Update My Info", "Change password", "Delete Account"));
             addMenu(new ModelMenu(new ImageIcon(getClass().getResource("/com/fpoly/icons/elective_20px.png")), "Subjects", getSubmenu()));
