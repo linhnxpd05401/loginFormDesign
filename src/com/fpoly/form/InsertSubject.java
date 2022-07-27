@@ -18,6 +18,7 @@ import com.fpoly.utils.XValidate;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.util.List;
@@ -186,9 +187,12 @@ public class InsertSubject extends javax.swing.JPanel {
             File file = fileChooser.getSelectedFile();
             XImage.save(file);
             ImageIcon icon = XImage.read(file.getName());
+            
+            Image img = XImage.resize(icon.getImage(), lblsubjectIamge.getWidth(), lblsubjectIamge.getHeight());
+            ImageIcon resizedIcon = new ImageIcon(img);
             url = file.getName();
-//            image.setToolTipText(file.getName());
-//              demoImag.setIcon(icon);
+            lblsubjectIamge.setToolTipText(file.getName());
+            lblsubjectIamge.setIcon(icon);
             this.repaint();
         }
     }
@@ -212,10 +216,6 @@ public class InsertSubject extends javax.swing.JPanel {
 //        demoImag.setIcon(new ImageIcon(getClass().getResource("/com/fpoly/icons/icons8_no_image_80px.png")));
     }
 
-    public void addLoadTestEvent(ActionListener event) {
-        btnLoad.addActionListener(event);
-    }
-    
     public void addEventInsert(ActionListener event) {
         btnInsert.addActionListener(event);
         
@@ -235,17 +235,6 @@ public class InsertSubject extends javax.swing.JPanel {
     private void initComponents() {
 
         pnlIn4 = new javax.swing.JPanel();
-        AnswerAndQuestion = new javax.swing.JPanel();
-        txtPassPoint = new com.fpoly.swing.TextField2();
-        txtSubject = new com.fpoly.swing.TextField2();
-        btnInsert = new com.fpoly.swing.button2();
-        jLabel1 = new javax.swing.JLabel();
-        btnUpdate = new com.fpoly.swing.button2();
-        btnGo = new com.fpoly.swing.button2();
-        textAreaScroll1 = new com.fpoly.swing.textarea.TextAreaScroll();
-        txaNote = new com.fpoly.swing.textarea.TextArea();
-        btnImage = new com.fpoly.swing.button2();
-        btnLoad = new com.fpoly.swing.button2();
         TestDetail = new javax.swing.JPanel();
         btnAnsUpdate = new com.fpoly.swing.button2();
         txtFind = new com.fpoly.swing.TextField2();
@@ -263,6 +252,16 @@ public class InsertSubject extends javax.swing.JPanel {
         txtAns4 = new com.fpoly.swing.TextField2();
         button21 = new com.fpoly.swing.button2();
         btnSearch = new com.fpoly.swing.button2();
+        AnswerAndQuestion = new javax.swing.JPanel();
+        txtPassPoint = new com.fpoly.swing.TextField2();
+        txtSubject = new com.fpoly.swing.TextField2();
+        btnInsert = new com.fpoly.swing.button2();
+        jLabel1 = new javax.swing.JLabel();
+        btnUpdate = new com.fpoly.swing.button2();
+        btnGo = new com.fpoly.swing.button2();
+        textAreaScroll1 = new com.fpoly.swing.textarea.TextAreaScroll();
+        txaNote = new com.fpoly.swing.textarea.TextArea();
+        lblsubjectIamge = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         PanelAnswerFull = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -275,114 +274,6 @@ public class InsertSubject extends javax.swing.JPanel {
 
         pnlIn4.setBackground(new java.awt.Color(255, 255, 255));
         pnlIn4.setLayout(new java.awt.CardLayout());
-
-        AnswerAndQuestion.setBackground(new java.awt.Color(255, 255, 255));
-
-        txtPassPoint.setLabelText("Pass Point");
-
-        txtSubject.setLabelText("Subject Name");
-
-        btnInsert.setText("INSERT");
-        btnInsert.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnInsertActionPerformed(evt);
-            }
-        });
-
-        jLabel1.setFont(new java.awt.Font("Tahoma", 2, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 153, 153));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("SUBJECT DETAIL");
-
-        btnUpdate.setText("UPDATE");
-        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUpdateActionPerformed(evt);
-            }
-        });
-
-        btnGo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/fpoly/icons/more_than_20px.png"))); // NOI18N
-        btnGo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGoActionPerformed(evt);
-            }
-        });
-
-        textAreaScroll1.setLabelText("Note(Can let Empty)");
-        textAreaScroll1.setOpaque(false);
-
-        txaNote.setColumns(20);
-        txaNote.setRows(5);
-        textAreaScroll1.setViewportView(txaNote);
-
-        btnImage.setText("Choose Image");
-        btnImage.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnImageActionPerformed(evt);
-            }
-        });
-
-        btnLoad.setText("Load Test");
-        btnLoad.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLoadActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout AnswerAndQuestionLayout = new javax.swing.GroupLayout(AnswerAndQuestion);
-        AnswerAndQuestion.setLayout(AnswerAndQuestionLayout);
-        AnswerAndQuestionLayout.setHorizontalGroup(
-            AnswerAndQuestionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(AnswerAndQuestionLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(AnswerAndQuestionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(AnswerAndQuestionLayout.createSequentialGroup()
-                        .addGap(305, 305, 305)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
-                        .addGap(297, 297, 297))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AnswerAndQuestionLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(AnswerAndQuestionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(AnswerAndQuestionLayout.createSequentialGroup()
-                                .addComponent(btnInsert, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnImage, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnLoad, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(AnswerAndQuestionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(AnswerAndQuestionLayout.createSequentialGroup()
-                                    .addComponent(txtSubject, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txtPassPoint, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(textAreaScroll1, javax.swing.GroupLayout.PREFERRED_SIZE, 528, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(18, 18, 18)
-                        .addComponent(btnGo, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
-        );
-        AnswerAndQuestionLayout.setVerticalGroup(
-            AnswerAndQuestionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(AnswerAndQuestionLayout.createSequentialGroup()
-                .addContainerGap(32, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(49, 49, 49)
-                .addGroup(AnswerAndQuestionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtSubject, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtPassPoint, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(textAreaScroll1, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(AnswerAndQuestionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnInsert, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnGo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnLoad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnImage, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(37, Short.MAX_VALUE))
-        );
-
-        pnlIn4.add(AnswerAndQuestion, "card3");
 
         TestDetail.setBackground(new java.awt.Color(255, 255, 255));
         TestDetail.setOpaque(false);
@@ -458,18 +349,18 @@ public class InsertSubject extends javax.swing.JPanel {
                 .addGap(20, 20, 20)
                 .addGroup(TestDetailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(TestDetailLayout.createSequentialGroup()
-                        .addComponent(button21, javax.swing.GroupLayout.DEFAULT_SIZE, 79, Short.MAX_VALUE)
+                        .addComponent(button21, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
                         .addGap(45, 45, 45)
-                        .addComponent(btnAnsUpdate, javax.swing.GroupLayout.DEFAULT_SIZE, 78, Short.MAX_VALUE)
+                        .addComponent(btnAnsUpdate, javax.swing.GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE)
                         .addGap(55, 55, 55)
-                        .addComponent(btnAnsInsert, javax.swing.GroupLayout.DEFAULT_SIZE, 78, Short.MAX_VALUE))
+                        .addComponent(btnAnsInsert, javax.swing.GroupLayout.DEFAULT_SIZE, 92, Short.MAX_VALUE))
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txContent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtRequest, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(82, 82, 82)
                 .addGroup(TestDetailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(TestDetailLayout.createSequentialGroup()
-                        .addComponent(txtFind, javax.swing.GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE)
+                        .addComponent(txtFind, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
                         .addGap(34, 34, 34)
                         .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(txtAns1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -510,6 +401,106 @@ public class InsertSubject extends javax.swing.JPanel {
         );
 
         pnlIn4.add(TestDetail, "card2");
+
+        AnswerAndQuestion.setBackground(new java.awt.Color(255, 255, 255));
+
+        txtPassPoint.setLabelText("Pass Point");
+
+        txtSubject.setLabelText("Subject Name");
+        txtSubject.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSubjectActionPerformed(evt);
+            }
+        });
+
+        btnInsert.setText("INSERT");
+        btnInsert.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInsertActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 153, 153));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("SUBJECT DETAIL");
+
+        btnUpdate.setText("UPDATE");
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateActionPerformed(evt);
+            }
+        });
+
+        btnGo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/fpoly/icons/more_than_20px.png"))); // NOI18N
+        btnGo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGoActionPerformed(evt);
+            }
+        });
+
+        textAreaScroll1.setLabelText("Note(Can let Empty)");
+        textAreaScroll1.setOpaque(false);
+
+        txaNote.setColumns(20);
+        txaNote.setRows(5);
+        textAreaScroll1.setViewportView(txaNote);
+
+        lblsubjectIamge.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblsubjectIamge.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(5, 121, 5)));
+        lblsubjectIamge.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblsubjectIamgeMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout AnswerAndQuestionLayout = new javax.swing.GroupLayout(AnswerAndQuestion);
+        AnswerAndQuestion.setLayout(AnswerAndQuestionLayout);
+        AnswerAndQuestionLayout.setHorizontalGroup(
+            AnswerAndQuestionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(AnswerAndQuestionLayout.createSequentialGroup()
+                .addGap(154, 154, 154)
+                .addComponent(btnInsert, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
+                .addGap(50, 50, 50)
+                .addComponent(btnUpdate, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)
+                .addGap(50, 50, 50)
+                .addComponent(btnGo, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+                .addGap(154, 154, 154))
+            .addGroup(AnswerAndQuestionLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(AnswerAndQuestionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(txtSubject, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtPassPoint, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(textAreaScroll1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(lblsubjectIamge, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31))
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        AnswerAndQuestionLayout.setVerticalGroup(
+            AnswerAndQuestionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(AnswerAndQuestionLayout.createSequentialGroup()
+                .addGap(27, 27, 27)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addGroup(AnswerAndQuestionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(AnswerAndQuestionLayout.createSequentialGroup()
+                        .addComponent(txtPassPoint, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(60, 60, 60)
+                        .addComponent(txtSubject, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(50, 50, 50)
+                        .addComponent(textAreaScroll1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(lblsubjectIamge, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(40, 40, 40)
+                .addGroup(AnswerAndQuestionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnGo, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(AnswerAndQuestionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnInsert, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18))
+        );
+
+        pnlIn4.add(AnswerAndQuestion, "card3");
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setLayout(new java.awt.CardLayout());
@@ -603,14 +594,14 @@ public class InsertSubject extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlIn4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(pnlIn4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(pnlIn4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(pnlIn4, javax.swing.GroupLayout.PREFERRED_SIZE, 506, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -756,13 +747,13 @@ public class InsertSubject extends javax.swing.JPanel {
         loadTableAns();
     }//GEN-LAST:event_btnGoActionPerformed
 
-    private void btnImageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImageActionPerformed
+    private void lblsubjectIamgeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblsubjectIamgeMouseClicked
         ChooseImage();
-    }//GEN-LAST:event_btnImageActionPerformed
+    }//GEN-LAST:event_lblsubjectIamgeMouseClicked
 
-    private void btnLoadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoadActionPerformed
+    private void txtSubjectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSubjectActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnLoadActionPerformed
+    }//GEN-LAST:event_txtSubjectActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -773,9 +764,7 @@ public class InsertSubject extends javax.swing.JPanel {
     private com.fpoly.swing.button2 btnAnsInsert;
     private com.fpoly.swing.button2 btnAnsUpdate;
     private com.fpoly.swing.button2 btnGo;
-    private com.fpoly.swing.button2 btnImage;
     private com.fpoly.swing.button2 btnInsert;
-    private com.fpoly.swing.button2 btnLoad;
     private com.fpoly.swing.button2 btnSearch;
     private com.fpoly.swing.button2 btnUpdate;
     private com.fpoly.swing.button2 button21;
@@ -785,6 +774,7 @@ public class InsertSubject extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTable2;
+    private javax.swing.JLabel lblsubjectIamge;
     private javax.swing.JPanel pnlIn4;
     private javax.swing.JTable tablSub;
     private com.fpoly.swing.textarea.TextAreaScroll textAreaScroll1;
