@@ -7,12 +7,13 @@ import com.fpoly.DAO.UnitsDAO;
 import com.fpoly.components.Header;
 import com.fpoly.components.Menu;
 import com.fpoly.dialog.MessageDialog;
-import com.fpoly.form.ChartForm;
+import com.fpoly.form.NumberOfTraineesForm;
 import com.fpoly.form.FormHome;
 import com.fpoly.form.InsertSubject;
 import com.fpoly.form.InsertTest;
 import com.fpoly.form.MainForm;
 import com.fpoly.form.RateForm;
+import com.fpoly.form.StatiscalTestForm;
 import com.fpoly.form.SubjectForm;
 import com.fpoly.form.TestForm;
 import com.fpoly.form.UserUpdateFrom;
@@ -213,8 +214,13 @@ public class Main extends javax.swing.JFrame {
                             }
                         });
                     }
-                    if(subMenuIndex == 2) {
-                        main.showForm(new ChartForm());
+                }
+                if(menuIndex == 4) {
+                    if(subMenuIndex == 0) {
+                        main.showForm(new NumberOfTraineesForm());
+                    }
+                    if(subMenuIndex == 1) {
+                        main.showForm(new StatiscalTestForm());
                     }
                 }
             } //Menu user

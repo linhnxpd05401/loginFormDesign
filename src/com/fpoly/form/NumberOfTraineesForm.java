@@ -1,4 +1,3 @@
-
 package com.fpoly.form;
 
 import com.fpoly.DAO.LearningProcessDAO;
@@ -12,12 +11,12 @@ import java.awt.Color;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
-
-public class ChartForm extends javax.swing.JPanel {
+public class NumberOfTraineesForm extends javax.swing.JPanel {
 
     private StatisticalDAO StDAO;
     private LearningProcessDAO lpDAO;
-    public ChartForm() {
+
+    public NumberOfTraineesForm() {
         initComponents();
         sp.getViewport().setOpaque(false);
         sp.setVerticalScrollBar(new ScrollBarCustom());
@@ -30,28 +29,68 @@ public class ChartForm extends javax.swing.JPanel {
         initDataForTable();
         initDataForProgress();
     }
-    
+
     private void initDataForChart() {
         lpDAO = new LearningProcessDAO();
         List<NumberOfTrainees> list = lpDAO.selectByMonth();
         lineChart.addLegend("Number of trainees", new Color(217, 54, 46), new Color(239, 64, 52));
-        
-        for(NumberOfTrainees num : list) {
-            double numberOfTrainees = num.getNumberOfTrainees();
-            lineChart.addData(new ModelChart(""+num.getMonth(), new double[] {numberOfTrainees}));
+
+        for (int i = list.size() - 1; i >= 0; i--) {
+            double numberOfTrainees = list.get(i).getNumberOfTrainees();
+            String month = null;
+            switch (list.get(i).getMonth()) {
+                case 1:
+                    month = "JEB";
+                    break;
+                case 2:
+                    month = "JAN";
+                    break;
+                case 3:
+                    month = "MAR";
+                    break;
+                case 4:
+                    month = "APR";
+                    break;
+                case 5:
+                    month = "MAY";
+                 
+                    break;
+                case 6:
+                    month = "JUN";
+                    break;
+                case 7:
+                    month = "JUL";
+                    break;
+                case 8:
+                    month = "AUG";
+                    break;
+                case 9:
+                    month = "SEP";
+                    break;
+                case 10:
+                    month = "OCT";
+                    break;
+                case 11:
+                    month = "NOV";
+                    break;
+                case 12:
+                    month = "DEC";
+                    break;
+            }
+            lineChart.addData(new ModelChart(month, new double[]{numberOfTrainees}));
         }
         lineChart.start();
     }
-    
+
     private void initDataForTable() {
         StDAO = new StatisticalDAO();
         List<Object[]> list = StDAO.getStatisticalUserNumberByMonth();
-        for(Object[] row : list) {
+        for (Object[] row : list) {
             table1.addRow(row);
         }
-        
+
     }
-    
+
     private void initDataForProgress() {
         StDAO = new StatisticalDAO();
         lpDAO = new LearningProcessDAO();
@@ -59,15 +98,16 @@ public class ChartForm extends javax.swing.JPanel {
         List<NumberOfTrainees> list = lpDAO.selectByMonth();
         List<User> listUs = usDAO.selectAll();
         int sum = 0;
-        for(NumberOfTrainees num : list) {
+        for (NumberOfTrainees num : list) {
             sum += num.getNumberOfTrainees();
         }
-        double percent = ((1.0)*sum/listUs.size())*100;
+        double percent = ((1.0) * sum / listUs.size()) * 100;
         progress1.getString((int) percent);
         progress1.setValue((int) percent);
         progress1.start();
-      
+
     }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
