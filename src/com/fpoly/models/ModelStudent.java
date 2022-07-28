@@ -8,6 +8,37 @@ import javax.swing.Icon;
 
 public class ModelStudent {
 
+    /**
+     * @return the coin
+     */
+    public int getCoin() {
+        return coin;
+    }
+
+    /**
+     * @param coin the coin to set
+     */
+    public void setCoin(int coin) {
+        this.coin = coin;
+    }
+
+
+
+    public ModelStudent() {
+    }
+
+    public ModelStudent(Icon icon, String name, String mark, int coin, int rank) {
+        this.icon = icon;
+        this.name = name;
+        this.mark = mark;
+        this.coin = coin;
+        this.rank = rank;
+    }
+
+
+
+
+
     public Icon getIcon() {
         return icon;
     }
@@ -24,48 +55,32 @@ public class ModelStudent {
         this.name = name;
     }
 
-    public String getGender() {
-        return gender;
+    public String getMark() {
+        return mark;
     }
 
-    public void setGender(String gender) {
-        this.gender = gender;
+    public void setMark(String mark) {
+        this.mark = mark;
     }
 
-    public String getCourse() {
-        return course;
+    public int getRank() {
+        return rank;
     }
 
-    public void setCourse(String course) {
-        this.course = course;
+    public void setRank(int rank) {
+        this.rank = rank;
     }
-
-    public int getFees() {
-        return fees;
-    }
-
-    public void setFees(int fees) {
-        this.fees = fees;
-    }
-
-    public ModelStudent(Icon icon, String name, String gender, String course, int fees) {
-        this.icon = icon;
-        this.name = name;
-        this.gender = gender;
-        this.course = course;
-        this.fees = fees;
-    }
-
-    public ModelStudent() {
-    }
+    
+    
 
     private Icon icon;
     private String name;
-    private String gender;
-    private String course;
-    private int fees;
+    private String mark;
+    private int coin;
+    private int rank;
+
 
     public Object[] toRowTable(EventAction event) {
-        return new Object[]{new ModelProfile(icon, name), gender, course, fees, new ModelAction(this, event)};
+        return new Object[]{new ModelProfile(icon, name), mark, coin, rank};
     }
 }

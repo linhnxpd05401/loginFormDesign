@@ -236,7 +236,7 @@
                     <Column editable="false" title="Name" type="java.lang.Object"/>
                     <Column editable="false" title="Mark" type="java.lang.Object"/>
                     <Column editable="false" title="Coin" type="java.lang.Object"/>
-                    <Column editable="false" title="Raking" type="java.lang.Object"/>
+                    <Column editable="false" title="Ranking" type="java.lang.Object"/>
                   </Table>
                 </Property>
                 <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">

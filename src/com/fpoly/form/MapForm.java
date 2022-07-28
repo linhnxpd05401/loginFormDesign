@@ -31,10 +31,7 @@ public class MapForm extends javax.swing.JPanel{
     private EventWaypoint event;
     public MapForm() {
         initComponents();
-        jPanel1.setVisible(true);
-         jXMapViewer.setVisible(false);
         init();
-                loading̣̣̣̣̣̣̣̣̣̣();
     }
     
     void init(){
@@ -78,17 +75,7 @@ public class MapForm extends javax.swing.JPanel{
         }
     }
      
-     void loading̣̣̣̣̣̣̣̣̣̣(){
-         
-         new java.util.Timer().schedule(new TimerTask() {
-                    @Override
-                    public void run() {
-                            jPanel1.setVisible(false);
-                            jXMapViewer.setVisible(true);
-                    }
-                }, 1000 * 2);
-         
-     }
+
 
      TileFactoryInfo info;
     @SuppressWarnings("unchecked")
@@ -100,9 +87,8 @@ public class MapForm extends javax.swing.JPanel{
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
 
+        setPreferredSize(new java.awt.Dimension(1027, 600));
         setLayout(new java.awt.CardLayout());
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/fpoly/icons/icons8_street_70px.png"))); // NOI18N
@@ -167,13 +153,6 @@ public class MapForm extends javax.swing.JPanel{
         );
 
         add(jXMapViewer, "card2");
-
-        jPanel1.setLayout(new java.awt.BorderLayout());
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/fpoly/icons/ezgif.com-gif-maker (2).gif"))); // NOI18N
-        jPanel1.add(jLabel1, java.awt.BorderLayout.CENTER);
-
-        add(jPanel1, "card3");
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -206,8 +185,6 @@ public class MapForm extends javax.swing.JPanel{
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPanel1;
     private org.jxmapviewer.JXMapViewer jXMapViewer;
     // End of variables declaration//GEN-END:variables
 

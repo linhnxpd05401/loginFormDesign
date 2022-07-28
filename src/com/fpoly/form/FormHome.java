@@ -17,6 +17,7 @@ import com.fpoly.models.ModelStudent;
 import com.fpoly.models.Subject;
 import com.fpoly.models.Test;
 import com.fpoly.models.TestProcessing;
+import com.fpoly.models.Top10;
 import com.fpoly.models.User;
 import com.fpoly.swing.icon.GoogleMaterialDesignIcons;
 import com.fpoly.swing.icon.IconFontSwing;
@@ -68,15 +69,15 @@ public class FormHome extends javax.swing.JPanel {
         };
         TestingProgressDAO tsDAO = new TestingProgressDAO();
         UserDAO usDao = new UserDAO();
-        List<TestProcessing> list = tsDAO.selectTop10();
+        List<Top10> list = tsDAO.selectTop10();
         int i = 1;
-        for (TestProcessing ts : list) {
-            User us = usDao.selectByUserID(ts.getUserID());
+        for (Top10 t10 : list) {
+           
             int m = i++;
-            if (us.getImage() != null) {
-                table.addRow(new ModelStudent(new ImageIcon(getClass().getResource("/com/fpoly/image/userImage/" + us.getImage())), us.getUserName(), String.valueOf(ts.getMark()), String.valueOf(ts.getMark()), m).toRowTable(eventAction));
+            if (t10.getImage() != null) {
+                table.addRow(new ModelStudent(new ImageIcon(getClass().getResource("/com/fpoly/image/userImage/" + t10.getImage())), t10.getUserName(), String.valueOf(t10.getTotalMark()),t10.getCoin(), m).toRowTable(eventAction));
             } else {
-                table.addRow(new ModelStudent(new ImageIcon(getClass().getResource("/com/fpoly/icons/male_user_40px.png")), us.getUserName(), String.valueOf(ts.getMark()), String.valueOf(ts.getMark()), m).toRowTable(eventAction));
+                table.addRow(new ModelStudent(new ImageIcon(getClass().getResource("/com/fpoly/icons/male_user_40px.png")), t10.getUserName(), String.valueOf(t10.getTotalMark()),t10.getCoin(), m).toRowTable(eventAction));
             }
         }
         
@@ -264,7 +265,7 @@ public class FormHome extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Name", "Mark", "Coin", "Raking"
+                "Name", "Mark", "Coin", "Ranking"
             }
         ) {
             boolean[] canEdit = new boolean [] {
