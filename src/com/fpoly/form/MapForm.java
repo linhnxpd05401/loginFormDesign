@@ -18,6 +18,7 @@ import org.jxmapviewer.viewer.GeoPosition;
 import org.jxmapviewer.viewer.TileFactoryInfo;
 import com.fpoly.swing.WayPointt.MyWaypoint;
 import com.fpoly.swing.WayPointt.WaypointRender;
+import java.util.TimerTask;
 import javax.swing.JOptionPane;
 import org.jxmapviewer.VirtualEarthTileFactoryInfo;
 import org.jxmapviewer.viewer.WaypointPainter;
@@ -30,16 +31,19 @@ public class MapForm extends javax.swing.JPanel{
     private EventWaypoint event;
     public MapForm() {
         initComponents();
+        jPanel1.setVisible(true);
+         jXMapViewer.setVisible(false);
         init();
+                loading̣̣̣̣̣̣̣̣̣̣();
     }
     
     void init(){
-        TileFactoryInfo info = new OSMTileFactoryInfo();
+        info = new VirtualEarthTileFactoryInfo(VirtualEarthTileFactoryInfo.MAP);
         DefaultTileFactory tileFactory = new DefaultTileFactory(info);
         jXMapViewer.setTileFactory(tileFactory);
         GeoPosition geo = new GeoPosition(16.075902503346285, 108.17173142678732);
         jXMapViewer.setAddressLocation(geo);
-        jXMapViewer.setZoom(20);
+        jXMapViewer.setZoom(15);
 
         //  Create event mouse move
         MouseInputListener mm = new PanMouseInputListener(jXMapViewer);
@@ -73,6 +77,18 @@ public class MapForm extends javax.swing.JPanel{
             jXMapViewer.add(d.getButton());
         }
     }
+     
+     void loading̣̣̣̣̣̣̣̣̣̣(){
+         
+         new java.util.Timer().schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                            jPanel1.setVisible(false);
+                            jXMapViewer.setVisible(true);
+                    }
+                }, 1000 * 2);
+         
+     }
 
      TileFactoryInfo info;
     @SuppressWarnings("unchecked")
@@ -84,6 +100,10 @@ public class MapForm extends javax.swing.JPanel{
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+
+        setLayout(new java.awt.CardLayout());
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/fpoly/icons/icons8_street_70px.png"))); // NOI18N
         jButton1.setBorderPainted(false);
@@ -146,16 +166,14 @@ public class MapForm extends javax.swing.JPanel{
                     .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jXMapViewer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jXMapViewer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+        add(jXMapViewer, "card2");
+
+        jPanel1.setLayout(new java.awt.BorderLayout());
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/fpoly/icons/ezgif.com-gif-maker (2).gif"))); // NOI18N
+        jPanel1.add(jLabel1, java.awt.BorderLayout.CENTER);
+
+        add(jPanel1, "card3");
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -188,6 +206,8 @@ public class MapForm extends javax.swing.JPanel{
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
     private org.jxmapviewer.JXMapViewer jXMapViewer;
     // End of variables declaration//GEN-END:variables
 
