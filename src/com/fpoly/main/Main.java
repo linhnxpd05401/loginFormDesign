@@ -18,6 +18,7 @@ import com.fpoly.form.RateForm;
 import com.fpoly.form.StatiscalTestForm;
 import com.fpoly.form.SubjectForm;
 import com.fpoly.form.TestForm;
+import com.fpoly.form.UserManagerAllInformation;
 import com.fpoly.form.UserUpdateFrom;
 import com.fpoly.form.changePass;
 import com.fpoly.models.QuestionExercise;
@@ -226,6 +227,9 @@ public class Main extends javax.swing.JFrame {
                     }
                     if(subMenuIndex == 1) {
                         main.showForm(new StatiscalTestForm());
+                    }
+                    if(subMenuIndex == 2) {
+                        main.showForm(new UserManagerAllInformation());
                     }
                 }
             } //Menu user

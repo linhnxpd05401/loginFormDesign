@@ -3,23 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
-            <file>file:/C:/Users/bimzc/OneDrive/Desktop/GitHubProject/loginFormDesign/src/com/fpoly/main/LoginForm1.java</file>
-            <file>file:/C:/Users/bimzc/OneDrive/Desktop/GitHubProject/loginFormDesign/src/com/fpoly/swing/WayPointt/MyWaypoint.java</file>
-            <file>file:/C:/Users/bimzc/OneDrive/Desktop/GitHubProject/loginFormDesign/src/com/fpoly/swing/WayPointt/ButtonWaypoint.java</file>
-            <file>file:/C:/Users/bimzc/OneDrive/Desktop/GitHubProject/loginFormDesign/src/com/fpoly/form/NumberOfTraineesForm.java</file>
+            <file>file:/C:/Users/bimzc/OneDrive/Desktop/GitHubProject/loginFormDesign/src/com/fpoly/DAO/StatisticalDAO.java</file>
             <file>file:/C:/Users/bimzc/OneDrive/Desktop/GitHubProject/loginFormDesign/src/com/fpoly/form/StatiscalTestForm.java</file>
-            <file>file:/C:/Users/bimzc/OneDrive/Desktop/GitHubProject/loginFormDesign/src/com/fpoly/form/MapForm.java</file>
-            <file>file:/C:/Users/bimzc/OneDrive/Desktop/GitHubProject/loginFormDesign/src/com/fpoly/chart/LineChart.java</file>
+            <file>file:/C:/Users/bimzc/OneDrive/Desktop/GitHubProject/loginFormDesign/src/com/fpoly/form/UserManagerAllInformation.java</file>
             <file>file:/C:/Users/bimzc/OneDrive/Desktop/GitHubProject/loginFormDesign/src/com/fpoly/main/Main.java</file>
-=======
-            <file>file:/C:/Users/nxlin/OneDrive/Máy%20tính/DA1/loginFormDesign/src/com/fpoly/form/FormHome.java</file>
-            <file>file:/C:/Users/nxlin/OneDrive/Máy%20tính/DA1/loginFormDesign/src/com/fpoly/main/Main.java</file>
-            <file>file:/C:/Users/nxlin/OneDrive/Máy%20tính/DA1/loginFormDesign/src/com/fpoly/models/Top10.java</file>
-            <file>file:/C:/Users/nxlin/OneDrive/Máy%20tính/DA1/loginFormDesign/src/com/fpoly/models/ModelStudent.java</file>
-            <file>file:/C:/Users/nxlin/OneDrive/Máy%20tính/DA1/loginFormDesign/src/com/fpoly/form/StatiscalTestForm.java</file>
-            <file>file:/C:/Users/nxlin/OneDrive/Máy%20tính/DA1/loginFormDesign/src/com/fpoly/DAO/TestingProgressDAO.java</file>
->>>>>>> 4fe0bdab6cd49f4931774ee3ef15fa1225d254d7
         </group>
     </open-files>
 </project-private>

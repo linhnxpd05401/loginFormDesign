@@ -23,6 +23,31 @@ public class StatisticalDAO {
     
     String Call_Proc_Statistical_Subject ="{call SP_STATISTICAL_SUBJECT}";
     
+    String Call_Proc_SP_MANAGER_USER_OVERALL = "{call SP_MANAGER_USER_OVERALL}";
+    
+    
+    public List<Object[]> getStatisticalManagrUsrOvrall() {
+        List<Object[]> list = new ArrayList<>();
+        try {
+            ResultSet rs = XJdbc.executeQuery(Call_Proc_SP_MANAGER_USER_OVERALL);
+            while (rs.next()) {
+                Object[] model = {
+                    rs.getString("NAME"),
+                    rs.getInt("USERID"),
+                    rs.getInt("COIN"),
+                    rs.getInt("TESTDONE"),
+                    rs.getInt("SUBJECTLEARNED"),
+                    rs.getInt("SUMMARKLEARN"),
+                    rs.getInt("SUMTESTMARK")
+                };
+                list.add(model);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+    
      public List<Object[]> getStatisticalTest() {
         List<Object[]> list = new ArrayList<>();
         try {
