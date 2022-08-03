@@ -210,7 +210,7 @@ public class LoginForm extends javax.swing.JFrame {
             @Override
             public void run() {
                 loeading.setVisible(true);
-                System.out.println(acc.getVetifyCode());
+//                System.out.println(acc.getVetifyCode());
                 ModelMessage ms = new XEmail().sendMain(acc.getEmail(), acc.getVetifyCode());
                 if (ms.isSuccess()) {
                     loeading.setVisible(false);

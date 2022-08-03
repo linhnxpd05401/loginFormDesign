@@ -85,7 +85,7 @@ public class Main extends javax.swing.JFrame {
         header = new Header();
         updateForm = new UserUpdateFrom();
         menu.addEvent((int menuIndex, int subMenuIndex) -> {
-            System.out.println("Menu Index: " + menuIndex + " Submenu Index: " + subMenuIndex);
+//        System.out.println("Menu Index: " + menuIndex + " Submenu Index: " + subMenuIndex);
             //Menu admin
             if (Auth.isAdmin()) {
                 if (menuIndex == 0) {

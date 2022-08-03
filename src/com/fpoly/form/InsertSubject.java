@@ -119,13 +119,24 @@ public class InsertSubject extends javax.swing.JPanel {
         }
     }
 
+    void buttonInSubStatus(boolean flag) {
+        btnInsert.setEnabled(flag);
+        btnUpdate.setEnabled(!flag);
+    }
+
+    void buttonSubQStatus(boolean flag) {
+        btnAnsInsert.setEnabled(flag);
+        btnAnsUpdate.setEnabled(!flag);
+    }
+
     public void setModelSubject(Subject sb) {
         txtSubject.setText(String.valueOf(sb.getSubjectName()));
         txtPassPoint.setText(String.valueOf(sb.getPassingPint()));
-        if (sb.getNote() == null) {
-            txaNote.setText("This is empty !");
+        txaNote.setText(sb.getNote());
+        if (sb.getSubjectImage() != null) {
+            lblsubjectIamge.setIcon(new ImageIcon(getClass().getResource("/com/fpoly/image/subjectimage/" + sb.getSubjectImage().trim())));
         } else {
-            txaNote.setText(sb.getNote());
+            lblsubjectIamge.setIcon(new ImageIcon(getClass().getResource("/com/fpoly/icons/icons8_no_image_80px.png")));
         }
 
     }
@@ -189,7 +200,7 @@ public class InsertSubject extends javax.swing.JPanel {
             File file = fileChooser.getSelectedFile();
             XImage.save(file);
             ImageIcon icon = XImage.read(file.getName());
-            
+
             Image img = XImage.resize(icon.getImage(), lblsubjectIamge.getWidth(), lblsubjectIamge.getHeight());
             ImageIcon resizedIcon = new ImageIcon(img);
             url = file.getName();
@@ -211,25 +222,27 @@ public class InsertSubject extends javax.swing.JPanel {
         return sb;
     }
 
-    public void clearTest() {
+    public void clearSub() {
         txtSubject.setText("");
         txtPassPoint.setText("");
         txaNote.setText("");
-//        demoImag.setIcon(new ImageIcon(getClass().getResource("/com/fpoly/icons/icons8_no_image_80px.png")));
+        lblsubjectIamge.setIcon(new ImageIcon(getClass().getResource("/com/fpoly/icons/icons8_no_image_80px.png")));
     }
 
     public void addEventInsert(ActionListener event) {
         btnInsert.addActionListener(event);
-        
+
     }
-    
+
     public void insertSubject() {
         if (checkNull()) {
-                SubjectDAO sbDAO = new SubjectDAO();
-                Subject sb = getModeSubjct();
-                sbDAO.insert(sb);
-                loadTableSubject();
-            }
+            SubjectDAO sbDAO = new SubjectDAO();
+            Subject sb = getModeSubjct();
+            sbDAO.insert(sb);
+            loadTableSubject();
+            clearSub();
+            btnInsert.setEnabled(true);
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -449,6 +462,7 @@ public class InsertSubject extends javax.swing.JPanel {
         textAreaScroll1.setViewportView(txaNote);
 
         lblsubjectIamge.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblsubjectIamge.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/fpoly/icons/icons8_no_image_80px.png"))); // NOI18N
         lblsubjectIamge.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(5, 121, 5)));
         lblsubjectIamge.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -556,7 +570,7 @@ public class InsertSubject extends javax.swing.JPanel {
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, true, true, true
+                false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -603,7 +617,6 @@ public class InsertSubject extends javax.swing.JPanel {
 
     private void btnInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertActionPerformed
 
-            
 
     }//GEN-LAST:event_btnInsertActionPerformed
 
@@ -612,7 +625,7 @@ public class InsertSubject extends javax.swing.JPanel {
     }//GEN-LAST:event_tablSubMousePressed
 
     private void btnAnsUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnsUpdateActionPerformed
-       // AnswerAndQuestionForExercciseDAO AnsdDao = new AnswerAndQuestionForExercciseDAO();
+        // AnswerAndQuestionForExercciseDAO AnsdDao = new AnswerAndQuestionForExercciseDAO();
         if (XValidate.checkNullText(txtRequest)
                 && XValidate.checkNullTextAr(txtQues)
                 && XValidate.checkNullText(txtRightAns)
@@ -646,6 +659,7 @@ public class InsertSubject extends javax.swing.JPanel {
                 Subject sb = sbDAO.selectByIDInt(id);
                 if (sb != null) {
                     setModelSubject(sb);
+                    buttonInSubStatus(false);
                 } else {
 
                 }
@@ -663,8 +677,9 @@ public class InsertSubject extends javax.swing.JPanel {
                     AnswerAndQuestionForExerccise ans = asDAO.SELECT_BY_ID(quesId);
                     if (ans != null) {
                         setModelAns(ans);
+                        buttonSubQStatus(false);
                     } else {
-                       
+
                     }
                 }
             }
@@ -684,7 +699,7 @@ public class InsertSubject extends javax.swing.JPanel {
                 ts.setSubjectID(id);
                 sbDAO.update(ts);
                 loadTableSubject();
-                clearTest();
+                clearSub();
             }
         }
     }//GEN-LAST:event_btnUpdateActionPerformed
@@ -706,7 +721,7 @@ public class InsertSubject extends javax.swing.JPanel {
                 Ans.setSubjectID(Integer.parseInt(txtSubjectNumber.getText()));
                 Ans.setRequest(txtRequest.getText());
                 Ans.setQuestionContent(txtQues.getText());
-                Ans.setAnswer1(txtAns1.getText()); 
+                Ans.setAnswer1(txtAns1.getText());
                 Ans.setAnswer2(txtAns2.getText());
                 Ans.setAnswer3(txtAns3.getText());
                 Ans.setAnswer4(txtAns4.getText());
@@ -716,6 +731,7 @@ public class InsertSubject extends javax.swing.JPanel {
                 andQuestionDao.insert(Ans);
                 loadTableAns();
                 Clear();
+                btnInsert.setEnabled(true);
 
             }
         }

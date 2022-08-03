@@ -77,7 +77,7 @@ public class UserUpdateFrom extends javax.swing.JPanel {
                 image.setIcon(new ImageIcon(getClass().getResource("/com/fpoly/icons/male_user_120px.png")));
             }
         } else {
-            System.out.println("false");
+//            System.out.println("false");
         }
     }
 

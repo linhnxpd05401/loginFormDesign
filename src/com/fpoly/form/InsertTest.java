@@ -90,6 +90,16 @@ public class InsertTest extends javax.swing.JPanel {
             model.addRow(row);
         }
     }
+    
+        void buttonInsTestStatus(boolean flag) {
+        btnInsert.setEnabled(flag);
+        btnUpdate.setEnabled(!flag);
+    }
+
+    void buttonSubTestStatus(boolean flag) {
+        btnAnsInsert.setEnabled(flag);
+        btnAnsUpdate.setEnabled(!flag);
+    }
 
     public void loadTableAnsFind() {
         DefaultTableModel model = (DefaultTableModel) jTable2.getModel();
@@ -549,7 +559,7 @@ public class InsertTest extends javax.swing.JPanel {
                 andQuestionDao.update(Ans);
                 loadTableAns();
                 Clear();
-
+                btnAnsInsert.setEnabled(true);
             }
         }
         {
@@ -566,6 +576,7 @@ public class InsertTest extends javax.swing.JPanel {
                 Test test = tsDAO.SELECT_BY_ID(id);
                 if (test != null) {
                     setModelTest(test);
+                    buttonInsTestStatus(false);
                 } else {
 
                 }
@@ -583,8 +594,8 @@ public class InsertTest extends javax.swing.JPanel {
                     AnswerAndQuestion ans = aaqDao.SELECT_BY_ID(quesId);
                     if (ans != null) {
                         setModelAns(ans);
+                        buttonSubTestStatus(false);
                     } else {
-                        System.out.println("ngu");
                     }
                 }
             }
@@ -603,6 +614,7 @@ public class InsertTest extends javax.swing.JPanel {
                 dAO.update(ts);
                 loadTableTest();
                 clearTest();
+                btnInsert.setEnabled(true);
             }
         }
     }//GEN-LAST:event_btnUpdateActionPerformed

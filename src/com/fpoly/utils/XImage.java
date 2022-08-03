@@ -37,7 +37,7 @@ public class XImage {
     
     public static ImageIcon read (String fileName) {
         File path = new File("/com/fpoly/icons/", fileName);
-        System.out.println(path.getAbsolutePath());
+//        System.out.println(path.getAbsolutePath());
         return new ImageIcon(path.getAbsolutePath());
     }
     

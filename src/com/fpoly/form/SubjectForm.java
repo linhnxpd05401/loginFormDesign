@@ -235,7 +235,7 @@ public class SubjectForm extends javax.swing.JPanel {
                 status = true;
                 User user = new User(userID, totalCoin);
                 userDAO.updateCoin(user);
-                System.out.println(totalCoin);
+//                System.out.println(totalCoin);
             } else {
                 status = false;
             }

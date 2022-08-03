@@ -69,7 +69,7 @@ public class RateForm extends javax.swing.JPanel {
         int TwoStar = rtDAO.countStar(2);
         int OneStar = rtDAO.countStar(1);
         int sum = FiveStar + FourStar + ThreeStar + TwoStar + OneStar;
-        System.out.println(sum);
+//        System.out.println(sum);
         float FivePernt = Math.round(((1.0) * FiveStar / sum) * 100);
         float FourPercent = Math.round(((1.0) * FourStar / sum) * 100);
         float ThreePercent = Math.round(((1.0) * ThreeStar / sum) * 100);

@@ -48,7 +48,7 @@ public class Main extends javax.swing.JFrame {
         menu.addEvent(new EventMenuSelected() {
             @Override
             public void menuSelected(int menuIndex, int subMenuIndex) {
-                System.out.println("Menu Index: " + menuIndex + " Submenu Index: " + subMenuIndex);
+//                System.out.println("Menu Index: " + menuIndex + " Submenu Index: " + subMenuIndex);
                 if (menuIndex == 0) {
                     if (subMenuIndex == 0) {
                         main.showForm(new FormHome());
