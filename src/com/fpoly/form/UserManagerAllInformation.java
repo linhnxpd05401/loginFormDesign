@@ -5,6 +5,7 @@
 package com.fpoly.form;
 
 import com.fpoly.DAO.StatisticalDAO;
+import com.fpoly.swing.scrollbar.ScrollBarCustom;
 import java.util.List;
 
 /**
@@ -19,6 +20,13 @@ public class UserManagerAllInformation extends javax.swing.JPanel {
     public UserManagerAllInformation() {
         initComponents();
         initDataToTable();
+            sp.getViewport().setOpaque(false);
+        sp.setVerticalScrollBar(new ScrollBarCustom());
+        sp.setBorder(null);
+        sp.getInsets().set(0, 0, 0, 0);
+        sp.setViewportBorder(null);
+        sp.getViewport().setBorder(null);
+        sp.getViewport().getInsets().set(0, 0, 0, 0);
     }
 
      private void initDataToTable() {
@@ -33,14 +41,14 @@ public class UserManagerAllInformation extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        tblAll = new javax.swing.JScrollPane();
+        sp = new javax.swing.JScrollPane();
         table1 = new com.fpoly.swing.table.Table();
         jLabel6 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
-        tblAll.setBackground(new java.awt.Color(255, 255, 255));
-        tblAll.setOpaque(false);
+        sp.setBackground(new java.awt.Color(255, 255, 255));
+        sp.setOpaque(false);
 
         table1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -58,7 +66,7 @@ public class UserManagerAllInformation extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        tblAll.setViewportView(table1);
+        sp.setViewportView(table1);
 
         jLabel6.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 102, 102));
@@ -69,7 +77,7 @@ public class UserManagerAllInformation extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(tblAll, javax.swing.GroupLayout.DEFAULT_SIZE, 889, Short.MAX_VALUE)
+            .addComponent(sp, javax.swing.GroupLayout.DEFAULT_SIZE, 889, Short.MAX_VALUE)
             .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
@@ -77,14 +85,14 @@ public class UserManagerAllInformation extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(tblAll, javax.swing.GroupLayout.PREFERRED_SIZE, 727, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(sp, javax.swing.GroupLayout.PREFERRED_SIZE, 727, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JScrollPane sp;
     private com.fpoly.swing.table.Table table1;
-    private javax.swing.JScrollPane tblAll;
     // End of variables declaration//GEN-END:variables
 }

@@ -21,8 +21,8 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jPanel3" alignment="0" max="32767" attributes="0"/>
           <Component id="pnlIn4" alignment="0" max="32767" attributes="0"/>
+          <Component id="jPanel3" alignment="0" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -66,7 +66,7 @@
                       <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
-                              <Component id="button21" pref="90" max="32767" attributes="0"/>
+                              <Component id="button21" pref="93" max="32767" attributes="0"/>
                               <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
                               <Component id="btnAnsUpdate" pref="93" max="32767" attributes="0"/>
                               <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
@@ -79,7 +79,7 @@
                       <EmptySpace min="-2" pref="82" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
-                              <Component id="txtFind" pref="285" max="32767" attributes="0"/>
+                              <Component id="txtFind" pref="289" max="32767" attributes="0"/>
                               <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
                               <Component id="btnSearch" min="-2" pref="49" max="-2" attributes="0"/>
                           </Group>
@@ -262,23 +262,23 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="154" max="-2" attributes="0"/>
-                      <Component id="btnInsert" pref="160" max="32767" attributes="0"/>
+                      <Component id="btnInsert" max="32767" attributes="0"/>
                       <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
-                      <Component id="btnUpdate" pref="165" max="32767" attributes="0"/>
+                      <Component id="btnUpdate" max="32767" attributes="0"/>
                       <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
-                      <Component id="btnGo" pref="140" max="32767" attributes="0"/>
+                      <Component id="btnGo" max="32767" attributes="0"/>
                       <EmptySpace min="-2" pref="154" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="txtSubject" alignment="0" max="32767" attributes="0"/>
-                          <Component id="txtPassPoint" alignment="0" max="32767" attributes="0"/>
-                          <Component id="textAreaScroll1" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="txtSubject" alignment="1" max="32767" attributes="0"/>
+                          <Component id="txtPassPoint" alignment="1" max="32767" attributes="0"/>
+                          <Component id="textAreaScroll1" pref="513" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <EmptySpace pref="99" max="32767" attributes="0"/>
                       <Component id="lblsubjectIamge" min="-2" pref="228" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                   </Group>
                   <Component id="jLabel1" alignment="0" max="32767" attributes="0"/>
               </Group>

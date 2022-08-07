@@ -21,7 +21,7 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="tblAll" alignment="0" pref="889" max="32767" attributes="0"/>
+          <Component id="sp" alignment="0" pref="889" max="32767" attributes="0"/>
           <Component id="jLabel6" alignment="1" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
@@ -30,13 +30,13 @@
           <Group type="102" alignment="1" attributes="0">
               <Component id="jLabel6" min="-2" pref="34" max="-2" attributes="0"/>
               <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-              <Component id="tblAll" min="-2" pref="727" max="-2" attributes="0"/>
+              <Component id="sp" min="-2" pref="727" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Container class="javax.swing.JScrollPane" name="tblAll">
+    <Container class="javax.swing.JScrollPane" name="sp">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
