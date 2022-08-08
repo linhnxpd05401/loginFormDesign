@@ -26,7 +26,7 @@ public class XValidate {
         }
         return false;
     }
-    
+
     public static boolean checkNullText(JTextField txt) {
         if (txt.getText().trim().length() > 0) {
             return true;
@@ -37,7 +37,7 @@ public class XValidate {
             return false;
         }
     }
-    
+
     public static boolean checkNullTextAr(JTextArea txt) {
         if (txt.getText().trim().length() > 0) {
             return true;
@@ -59,17 +59,24 @@ public class XValidate {
         }
         return true;
     }
-    
-    public static boolean isNumber(JTextField field){
+
+    public static boolean isNumber(JTextField field) {
         String regx = "[0-9]+";
         Pattern pt = Pattern.compile(regx);
         pt = Pattern.compile("\\d+");
-        if (pt.matcher(field.getText()).matches()==false) {
+        if (pt.matcher(field.getText()).matches() == false) {
             MessageDialog mess = new MessageDialog(Main.getFrames()[0], true);
             mess.showMessage(MessageDialog.MessageType.INFORMATION, "Must be a number !.");
             field.grabFocus();
             return false;
         }
         return true;
+    }
+
+    public static boolean isValidEmailAddress(String email) {
+        String ePattern = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$";
+        java.util.regex.Pattern p = java.util.regex.Pattern.compile(ePattern);
+        java.util.regex.Matcher m = p.matcher(email);
+        return m.matches();
     }
 }

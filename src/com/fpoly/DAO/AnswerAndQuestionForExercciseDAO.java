@@ -35,7 +35,9 @@ public class AnswerAndQuestionForExercciseDAO extends TheLEAEnglishCenterDAO<Ans
     String SELECT_SUBJECT_ID = "SELECT * FROM AnswersAndQuestionsForExercise WHERE " + one + " = ?";
 
     String UPDATE = "ALTER TABLE AnswersAndQuestionsForExercise SET " + two + " = ? " + three + " = ? " + four + " = ? " + five + " = ? " + six + " = ? " + seven + " = ? " + eight + " = ? " + nine + " = ? " + ten + " WHERE " + one + " = ?";
-
+    
+    String DELETE_QUESTION_BY_SUBID = "DELETE FROM AnswersAndQuestionsForExercise WHERE "+two+"=?";
+    
     public List<Object[]> SELECT_MODEL() {
         List<Object[]> list = new ArrayList<>();
         try {
@@ -84,6 +86,10 @@ public class AnswerAndQuestionForExercciseDAO extends TheLEAEnglishCenterDAO<Ans
             e.printStackTrace();
         }
         return list;
+    }
+    
+    public void deleteQuestionBySubjectID(int ID){
+        XJdbc.update(DELETE_QUESTION_BY_SUBID, ID);
     }
     
     public AnswerAndQuestionForExerccise SELECT_BY_ID(int id){

@@ -5,7 +5,15 @@
 package com.fpoly.form;
 
 import com.fpoly.DAO.StatisticalDAO;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import static java.awt.image.ImageObserver.WIDTH;
 import java.util.List;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.plaf.basic.BasicScrollBarUI;
+import javax.swing.table.DefaultTableCellRenderer;
 
 /**
  *
@@ -19,6 +27,45 @@ public class UserManagerAllInformation extends javax.swing.JPanel {
     public UserManagerAllInformation() {
         initComponents();
         initDataToTable();
+      //  designTable();
+    }
+    
+    private void tableHeadColor(JTable table_name) {
+        DefaultTableCellRenderer head_render = new DefaultTableCellRenderer();
+
+        head_render.setBackground(new Color(204, 153, 255));
+        table_name.getTableHeader().setDefaultRenderer(head_render);
+
+        //to call above method
+        //table_head_color("write table name");
+    }
+
+    private void scrollBarColor(JScrollPane scrollPane) {
+        scrollPane.getVerticalScrollBar().setUI(new BasicScrollBarUI() {
+            @Override
+            protected void configureScrollBarColors() {
+                this.thumbColor = Color.GRAY;
+            }
+        });
+        scrollPane.getHorizontalScrollBar().setPreferredSize(new Dimension(Integer.MAX_VALUE, 2));
+        scrollPane.getVerticalScrollBar().setPreferredSize(new Dimension(WIDTH, Integer.MAX_VALUE));
+    }
+    
+    void designTable() {
+//        jTable2.getTableHeader().setOpaque(true);
+//        jTable2.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 12));
+//        table_head_color(jTable2);
+//        table_head_color(jTable3);
+//        scroll_bar_color(jScrollPane1);
+//        scroll_bar_color(jScrollPane3);
+//        jTable2.getTableHeader().setForeground(new Color(255, 255, 255));
+//        jTable2.setRowHeight(25);
+          table1.getTableHeader().setOpaque(true);
+          table1.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 12));
+          tableHeadColor(table1);
+          scrollBarColor(tblAll);
+          table1.getTableHeader().setForeground(new Color(255,255,255));
+          table1.setRowHeight(25);
     }
 
      private void initDataToTable() {

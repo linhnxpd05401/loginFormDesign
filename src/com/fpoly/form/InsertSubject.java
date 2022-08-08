@@ -119,10 +119,7 @@ public class InsertSubject extends javax.swing.JPanel {
         }
     }
 
-    void buttonInSubStatus(boolean flag) {
-        btnInsert.setEnabled(flag);
-        btnUpdate.setEnabled(!flag);
-    }
+
 
     void buttonSubQStatus(boolean flag) {
         btnAnsInsert.setEnabled(flag);
@@ -165,6 +162,7 @@ public class InsertSubject extends javax.swing.JPanel {
         txtAns4.setText("");
         txtRightAns.setText("");
         txtPoint1.setText("");
+        btnAnsInsert.setEnabled(true);
     }
 
     public boolean checkNull() {
@@ -227,6 +225,7 @@ public class InsertSubject extends javax.swing.JPanel {
         txtPassPoint.setText("");
         txaNote.setText("");
         lblsubjectIamge.setIcon(new ImageIcon(getClass().getResource("/com/fpoly/icons/icons8_no_image_80px.png")));
+        btnInsert.setEnabled(true);
     }
 
     public void addEventInsert(ActionListener event) {
@@ -412,7 +411,7 @@ public class InsertSubject extends javax.swing.JPanel {
                         .addGroup(TestDetailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(btnSearch, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(txtFind, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addGap(40, 40, 40))
+                .addGap(138, 138, 138))
         );
 
         pnlIn4.add(TestDetail, "card2");
@@ -484,11 +483,11 @@ public class InsertSubject extends javax.swing.JPanel {
                 .addGap(154, 154, 154))
             .addGroup(AnswerAndQuestionLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(AnswerAndQuestionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(AnswerAndQuestionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(txtSubject, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtPassPoint, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(textAreaScroll1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
+                    .addComponent(textAreaScroll1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 513, Short.MAX_VALUE))
+                .addGap(18, 91, Short.MAX_VALUE)
                 .addComponent(lblsubjectIamge, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31))
             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -504,10 +503,12 @@ public class InsertSubject extends javax.swing.JPanel {
                         .addComponent(txtPassPoint, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(60, 60, 60)
                         .addComponent(txtSubject, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(50, 50, 50)
-                        .addComponent(textAreaScroll1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                    .addComponent(lblsubjectIamge, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(40, 40, 40)
+                        .addGap(127, 127, 127))
+                    .addGroup(AnswerAndQuestionLayout.createSequentialGroup()
+                        .addGroup(AnswerAndQuestionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblsubjectIamge, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textAreaScroll1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(40, 40, 40)))
                 .addGroup(AnswerAndQuestionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnGo, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(AnswerAndQuestionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -804,4 +805,11 @@ public class InsertSubject extends javax.swing.JPanel {
     private com.fpoly.swing.TextField2 txtSubject;
     private com.fpoly.swing.TextField2 txtSubjectNumber;
     // End of variables declaration//GEN-END:variables
+
+    private void buttonInSubStatus(boolean b) {
+        btnInsert.setEnabled(b);
+        btnAnsInsert.setEnabled(b);
+        btnUpdate.setEnabled(!b);
+        btnAnsUpdate.setEnabled(!b);
+    }
 }

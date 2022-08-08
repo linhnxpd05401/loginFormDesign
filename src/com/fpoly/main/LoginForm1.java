@@ -14,6 +14,7 @@ import com.fpoly.models.User;
 import com.fpoly.swing.ButtonOutLine;
 import com.fpoly.utils.Auth;
 import com.fpoly.utils.XEmail;
+import com.fpoly.utils.XValidate;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -183,7 +184,8 @@ public class LoginForm1 extends javax.swing.JDialog {
         Accounts newAcount;
         if (account.getEmail().equals("") || account.getUsername().equals("") || account.getPassword().equals("")) {
             showMessage(Message.MessageType.ERROR, "Enter your info please!");
-        } else {
+        }
+        else {
             if (lgDAO.checkEmail(account.getEmail()) == false) {
                 showMessage(Message.MessageType.ERROR, "Email already exit");
             } else {

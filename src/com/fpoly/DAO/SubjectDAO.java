@@ -23,6 +23,8 @@ public class SubjectDAO extends TheLEAEnglishCenterDAO<Subject, String>{
     
     String UPDATE_SUBJECT = "UPDATE Subject SET SubjectName = ?,Note = ?, SubjectImage = ?,PassingPoint = ? WHERE SubjectID=?";
     
+    String DELETE_SUBJECT = "DELETE FROM SUBJECT WHERE SubjectID=?";
+    
     
      public List<Object[]> SELECT_MODEL() {
         List<Object[]> list = new ArrayList<>();
@@ -42,6 +44,10 @@ public class SubjectDAO extends TheLEAEnglishCenterDAO<Subject, String>{
         }
         return list;
     }
+     
+     public void deleteSubject(int ID){
+         XJdbc.update(DELETE_SUBJECT,ID );
+     }
      
      
     
