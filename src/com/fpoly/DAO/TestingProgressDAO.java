@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package com.fpoly.DAO;
 
 import com.fpoly.models.Top10;
@@ -11,10 +8,6 @@ import com.fpoly.utils.XJdbc;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
-/**
- *
- * @author bimzc
- */
 public class TestingProgressDAO extends TheLEAEnglishCenterDAO<TestProcessing, String> {
 
     String SELECT_TOP_10 = "SELECT TOP 10 A.UserID, B.Name, B.Image, SUM(A.Mark) AS 'TotalMark', B.Coin FROM TestingProcess A\n"

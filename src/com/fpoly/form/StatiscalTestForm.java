@@ -5,7 +5,6 @@ import com.fpoly.DAO.StatisticalDAO;
 import com.fpoly.DAO.TestDAO;
 import com.fpoly.DAO.TestingProgressDAO;
 import com.fpoly.chart.ModelChart;
-import com.fpoly.models.Top10;
 import com.fpoly.models.Test;
 import java.awt.Color;
 import java.util.List;
@@ -34,11 +33,6 @@ public class StatiscalTestForm extends javax.swing.JPanel {
             int notPass = tpDAO.selectNumberOfTrainessNoPassingTest(listTest.get(i).getTestID());
             chart.addData(new ModelChart(listTest.get(i).getTestName(), new double[]{total, pass, notPass}));
         }
-        
-        
-            
-      
-        
         chart.start();
     }
     

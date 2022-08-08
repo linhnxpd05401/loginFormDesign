@@ -8,21 +8,13 @@ import javax.swing.Icon;
 
 public class ModelStudent {
 
-    /**
-     * @return the coin
-     */
     public int getCoin() {
         return coin;
     }
 
-    /**
-     * @param coin the coin to set
-     */
     public void setCoin(int coin) {
         this.coin = coin;
     }
-
-
 
     public ModelStudent() {
     }
@@ -34,10 +26,6 @@ public class ModelStudent {
         this.coin = coin;
         this.rank = rank;
     }
-
-
-
-
 
     public Icon getIcon() {
         return icon;
@@ -71,8 +59,6 @@ public class ModelStudent {
         this.rank = rank;
     }
     
-    
-
     private Icon icon;
     private String name;
     private String mark;
